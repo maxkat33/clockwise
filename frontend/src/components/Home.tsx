@@ -10,6 +10,7 @@ const Home = () => {
   const [manualTime, setManualTime] = useState<string>('00:00')
   const [locationStatus, setLocationStatus] = useState<string>('')
   const [refCoords, setRefCoords] = useState<[number, number] | null>(null)
+  const [refTimezone, setRefTimezone] = useState<string>('Australia/Melbourne')
   const [locations, setLocations] = useState<Array<[number, number]>>([refCoords ?? MELBOURNE, LONDON])
 
   // Ask user for location permissions and if access is granted, update default timezone to be use user's coordinates
