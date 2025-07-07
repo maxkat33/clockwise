@@ -13,6 +13,7 @@ type Props = {
   is24h: boolean
   refTimestamp: number
   setRefTimestamp: React.Dispatch<React.SetStateAction<number>>
+  locations: string[]
   setLocations: React.Dispatch<React.SetStateAction<string[]>>
   searchKey: string
 }
@@ -24,6 +25,7 @@ const ClockCard = ({
   is24h,
   refTimestamp,
   setRefTimestamp,
+  locations,
   setLocations,
   searchKey
 }: Props) => {
@@ -65,6 +67,7 @@ const ClockCard = ({
           isNow={isNow}
           refTimestamp={refTimestamp}
           timezone={timezone}
+          locations={locations}
         />
         <DigitalClock 
           now={now}
