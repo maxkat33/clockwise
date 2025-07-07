@@ -14,7 +14,7 @@ type Props = {
 const sizeMap: Record<number, string> = {
   1: "w-80 h-80",  // 80px by 80px
   2: "w-40 h-40",
-  3: "w-18 h-18",
+  3: "w-20 h-20",
   4: "w-18 h-18",
   5: "w-16 h-16",
   6: "w-16 h-16",
@@ -35,7 +35,7 @@ const AnalogClock = ( {now, isNow, refTimestamp, timezone, locations}: Props) =>
   return (
     <div className={`self-center ${clockSize} bg-slate-50 rounded-[50%]`}>
       <Clock
-        className="react-clock w-full h-full"
+        className="w-full h-full react-clock"
         value={clockDate}
       />
     </div>

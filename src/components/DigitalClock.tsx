@@ -10,7 +10,19 @@ type Props = {
     setRefTimestamp: React.Dispatch<React.SetStateAction<number>>
     timezone: string
     utcOffset: number | null
+    locations: string[]
 }
+
+const sizeMap: Record<number, string> = {
+    1: "text-4xl",
+    2: "text-2xl",
+    3: "text-xl",
+    4: "text-lg",
+    5: "text-base",
+    6: "text-base",
+    7: "text-sm",
+    8: "text-sm",
+  }  
 
 const DigitalClock = ({
     now,
@@ -20,7 +32,8 @@ const DigitalClock = ({
     refTimestamp,
     setRefTimestamp,
     timezone,
-    utcOffset
+    utcOffset,
+    locations
 }: Props) => {
 
     // state
@@ -113,12 +126,15 @@ const DigitalClock = ({
         )
     }
 
+    // Tailwind classes
+
+    
+    const count = Math.min(locations.length, 8)
+    const textSize = sizeMap[count] || sizeMap[8]
+
     return (
     <div 
-        className="
-            relative flex justify-center items-center
-            text-2xl tracking-wider
-            cursor-pointer"
+        className={`relative flex items-center justify-center ${textSize} tracking-wider cursor-pointer`}
         onClick={() => setIsNow(false)}
     >
         <span className="inline-flex space-x-1 tracking-wide">
@@ -158,10 +174,7 @@ const DigitalClock = ({
         {!is24h && (
             <select 
             value={displayAmPm}
-            className="
-                absolute left-full
-                px-2
-                appearance-none cursor-pointer"
+            className="absolute px-2 appearance-none cursor-pointer left-full"
             onChange={(e) => {
                 setIsNow(false)
                     setDisplayAmPm(e.target.value)

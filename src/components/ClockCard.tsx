@@ -52,16 +52,9 @@ const ClockCard = ({
   const ready = timezone.length > 0 && typeof utcOffset === "number"
 
   return (
-    <div className="
-      flex flex-col gap-2 p-3 
-    bg-sky-200 shadow-md shadow-sky-300
-      rounded-xl 
-      hover:shadow-lg hover:shadow-blue-300
-      focus:shadow-lg focus:shadow-blue-300
-      transition-shadow duration-300 ease-in-out
-    ">
+    <div className="p-3 transition-shadow duration-300 ease-in-out shadow-md bg-sky-200 shadow-sky-300 rounded-xl hover:shadow-lg hover:shadow-blue-300 focus:shadow-lg focus:shadow-blue-300">
       {ready ? (
-      <section className="h-full flex flex-col items-center justify-center gap-3">
+      <section className={`flex flex-col items-center justify-center h-full gap-${locations.length === 2 ? "3" : "2"}`}>
         <AnalogClock
           now={now}
           isNow={isNow}
@@ -78,10 +71,12 @@ const ClockCard = ({
           setRefTimestamp={setRefTimestamp}
           timezone={timezone}
           utcOffset={utcOffset}
+          locations={locations}
         />
         <Location
           utcOffset={utcOffset}
           searchKey={searchKey}
+          locations={locations}
           setLocations={setLocations}
         />
       </section>

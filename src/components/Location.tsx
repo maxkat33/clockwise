@@ -6,10 +6,11 @@ import { useTypeahead } from "../hooks/useTypeahead"
 type Props = {
   utcOffset: number | null
   searchKey: string
+  locations: string[]
   setLocations: React.Dispatch<React.SetStateAction<string[]>>
 }
 
-const Location = ({ utcOffset, searchKey, setLocations }: Props) => {
+const Location = ({ utcOffset, searchKey, locations, setLocations }: Props) => {
 
     // state
 
@@ -66,16 +67,13 @@ const Location = ({ utcOffset, searchKey, setLocations }: Props) => {
     // Display mode
     if (!editing) {
         return (
-            <div className="flex w-full items-center gap-2 px-2 font-[500] tracking-wide">
-                {/* UTC offset - takes as much space as its content needs */}
+            <div className={`flex ${locations.length === 4 ? "flex-col" : ""} w-full items-center gap-2 px-2 font-[500] tracking-wide`}>
                 <span className={`flex-shrink-0 ${textClamp}`}>
                     {utcOffset !== null ? formatTimezoneString(utcOffset) : "..."}
                 </span>
-
-                {/* City & Country - takes remaining space */}
                 <button
                     onClick={() => setEditing(true)}
-                    className="flex-grow min-w-0 text-center hover:cursor-pointer hover:underline"
+                    className="flex-grow min-w-0 ml-2 text-left hover:cursor-pointer hover:underline"
                 >
                     <span className={`block truncate ${textClamp} font-medium overflow-hidden text-ellipsis`}>
                     {city}, {country}
@@ -121,17 +119,17 @@ const Location = ({ utcOffset, searchKey, setLocations }: Props) => {
                     }, 100)
                 }}
                 placeholder="Search for a city..."
-                className="w-full rounded-lg border p-2"
+                className="w-full p-2 border rounded-lg"
             />
             {matches.length > 0 && (
-            <ul className="absolute z-10 mt-1 w-full max-h-60 overflow-y-auto rounded-lg border bg-white shadow-lg">
+            <ul className="absolute z-10 w-full mt-1 overflow-y-auto bg-white border rounded-lg shadow-lg max-h-60">
                 {matches.map((key, idx) => {
                     const [c, cn] = key.split(", ")
                     const isActive = idx === highlightedIndex
                     return (
                         <li
                             key={key}
-                            className={`cursor-pointer px-3 py-2 ${isActive ? "bg-sky-200" : "hover:bg-sky-100"}`}
+                            className={`cursor-pointer px-3 py-2 ${isActive ? "bg-pink-200" : "hover:bg-purple-100"}`}
                             onMouseEnter={() => setHighlightedIndex(idx)}
                             onClick={() => chooseSearchKey(key)}
                         >
