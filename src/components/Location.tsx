@@ -8,6 +8,7 @@ type Props = {
   searchKey: string
   setLocations: React.Dispatch<React.SetStateAction<string[]>>
 }
+
 const Location = ({ utcOffset, searchKey, setLocations }: Props) => {
 
     // state

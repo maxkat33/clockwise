@@ -30,34 +30,33 @@ const Home = () => {
   useEffect(() => {
     navigator.permissions.query({ name: 'geolocation' })
     .then((result) => {
-
       setLocationStatus(result.state)
-
-      if (result.state === 'granted' || result.state === 'prompt') {
-        navigator.geolocation.getCurrentPosition(
-          (position) => {
-            const userCityData = getClosestCityData(position.coords.latitude, position.coords.longitude)
-            console.log('userCityData: ', userCityData)
-            const userCity = userCityData.searchKey
-            setLocations((prevLocations) => {
-              const newLocations = [...prevLocations]
-              newLocations[0] = userCity       
-              return newLocations 
-            })
-          },
-          (error) => {
-            console.error(`Geolocation error ${error.code}: ${error.message}`)
-          }
-        )
-      }
-
+      
       // Listen for changes
       result.onchange = () => {
         setLocationStatus(result.state)
       }
-
     })
   }, [])
+
+  useEffect(() => {
+    if (locationStatus === 'granted' || locationStatus === 'prompt') {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const userCityData = getClosestCityData(position.coords.latitude, position.coords.longitude)
+          const userCity = userCityData.searchKey
+          setLocations((prevLocations) => {
+            const newLocations = [...prevLocations]
+            newLocations[0] = userCity       
+            return newLocations 
+          })
+        },
+        (error) => {
+          console.error(`Geolocation error ${error.code}: ${error.message}`)
+        }
+      )
+    }
+  }, [locationStatus])
 
   // Tailwind classes
 
