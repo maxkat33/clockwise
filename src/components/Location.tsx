@@ -94,7 +94,7 @@ const Location = ({ utcOffset, searchKey, setLocations }: Props) => {
             }
             if (e.key === "Enter" && matches.length > 0) {
                 e.preventDefault()
-                chooseSearchKey(matches[0])
+                chooseSearchKey(matches[highlightedIndex])
             }
         }}
         onBlur={() => {

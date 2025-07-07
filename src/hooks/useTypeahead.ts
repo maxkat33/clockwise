@@ -23,7 +23,6 @@ export function useTypeahead(
         countryMatches.push(key)
       }
 
-      if (cityMatches.length + countryMatches.length >= limit) break
     }
 
     return [...cityMatches, ...countryMatches].slice(0, limit)
