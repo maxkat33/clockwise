@@ -3,18 +3,18 @@ import { getRandomCity, getClosestCityData } from "../utils"
 import ClockCard from "./ClockCard"
 
 const Home = () => {
-
+  
+  // state
   const [now, setNow] = useState<number>(Date.now())
   const [isNow, setIsNow] = useState<boolean>(true)
   const [refTimestamp, setRefTimestamp] = useState<number>(Date.now())
   const [is24h, setIs24h] = useState<boolean>(false)
-  
-  // not passed as a prop - only needed here to render the correct amount and locations of clockcards
   const [locations, setLocations] = useState<string[]>(["melbourne, australia", "london, united kingdom"])
-  // only used here to determine if the first clockcard is the users location or the default value
   const [locationStatus, setLocationStatus] = useState<string>('')
 
-  // If now === true, update now's state every second so that it is accurate to the exact current time in this timezone
+  // useEffects
+
+  // If now === true, update now in state every second to Unix time
   useEffect(() => {
     if (!isNow) return
     const interval = setInterval(() => {
@@ -26,7 +26,7 @@ const Home = () => {
 
   }, [isNow])
 
-  // Ask user for location permissions and if access is granted, update default timezone to be use user's coordinates
+  // Ask user for location permissions and if access is granted, update first clock to be in the user's city
   useEffect(() => {
     navigator.permissions.query({ name: 'geolocation' })
     .then((result) => {
@@ -58,6 +58,8 @@ const Home = () => {
 
     })
   }, [])
+
+  // Tailwind classes
 
   const buttonClass = "w-24 h-12 p-2 bg-amber-200 rounded-xl tracking-wide font-bold cursor-pointer flex justify-center items-center"
 

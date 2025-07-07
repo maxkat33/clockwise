@@ -10,7 +10,6 @@ type Props = {
   timezone: string
 }
 
-
 const AnalogClock = ( {now, isNow, refTimestamp, timezone}: Props) => {
 
   let clockDate

@@ -11,10 +11,8 @@ type Props = {
   isNow: boolean
   setIsNow: React.Dispatch<React.SetStateAction<boolean>>
   is24h: boolean
-
   refTimestamp: number
   setRefTimestamp: React.Dispatch<React.SetStateAction<number>>
-  
   setLocations: React.Dispatch<React.SetStateAction<string[]>>
   searchKey: string
 }
@@ -29,9 +27,13 @@ const ClockCard = ({
   setLocations,
   searchKey
 }: Props) => {
+
+  // state
   
   const [utcOffset, setUtcOffset] = useState<number | null>(null)
   const [timezone, setTimezone] = useState<string>("")
+
+  // useEffects
 
   useEffect(() => {
     const cityData = getCityData(searchKey)

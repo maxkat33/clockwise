@@ -6,10 +6,8 @@ type Props = {
     isNow: boolean
     setIsNow: React.Dispatch<React.SetStateAction<boolean>>
     is24h: boolean
-
     refTimestamp: number
     setRefTimestamp: React.Dispatch<React.SetStateAction<number>>
-
     timezone: string
     utcOffset: number | null
 }
@@ -25,11 +23,15 @@ const DigitalClock = ({
     utcOffset
 }: Props) => {
 
+    // state
+
     const [displayHours, setDisplayHours] = useState<string>("")
     const [displayMinutes, setDisplayMinutes] = useState<string>("")
     const [displaySeconds, setDisplaySeconds] = useState<string>("")
     const [displayAmPm, setDisplayAmPm] = useState<string>("")
     
+    // handlers
+
     const updateRefTime = () => {
         if (!isNow && utcOffset) {
 
@@ -51,6 +53,8 @@ const DigitalClock = ({
         }
     }
 
+    // useEffects
+
     useEffect(() => {
         if (!timezone) return 
         const timestamp = isNow ? now : refTimestamp
@@ -62,13 +66,14 @@ const DigitalClock = ({
         
     }, [now, isNow, is24h, refTimestamp])
 
-
     useEffect(() => {
         if (!isNow && displayHours && displayMinutes && displaySeconds && (is24h || displayAmPm)) {
           updateRefTime()
         }
       }, [displayHours, displayMinutes, displaySeconds, displayAmPm])
-      
+    
+
+    // element creating logic
 
     const hoursOptions = []
     const hoursOptions24 = []
