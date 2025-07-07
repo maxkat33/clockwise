@@ -6,7 +6,7 @@
 export const normalizeStr = (str: string) =>
   str.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
 
-export const formatDigitalString = (timestamp: number, is24h: boolean): string => {
+export const formatDigitalString = (timestamp: number): string => {
     
   let date = new Date(timestamp)
   let hours = date.getHours().toString().padStart(2, "0")
