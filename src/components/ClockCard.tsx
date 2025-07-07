@@ -15,7 +15,6 @@ type Props = {
   refTimestamp: number
   setRefTimestamp: React.Dispatch<React.SetStateAction<number>>
   
-  locations: string[]
   setLocations: React.Dispatch<React.SetStateAction<string[]>>
   searchKey: string
 }
@@ -27,21 +26,16 @@ const ClockCard = ({
   is24h,
   refTimestamp,
   setRefTimestamp,
-  locations,
   setLocations,
   searchKey
 }: Props) => {
   
-  // each clockcard tracks now itself to avoid re rendering the entire app every second - only the clockcard itself
   const [utcOffset, setUtcOffset] = useState<number | null>(null)
   const [timezone, setTimezone] = useState<string>("")
-  
 
   useEffect(() => {
-    console.log("Looking up city data for:", searchKey)
     const cityData = getCityData(searchKey)
-    console.log("City data found:", cityData)
-    // console.log('cityData:', cityData)
+
     if (cityData) {
       setUtcOffset(cityData.utcOffset)
       setTimezone(cityData.timezone)
@@ -49,8 +43,7 @@ const ClockCard = ({
       setUtcOffset(null)
       setTimezone("")
     }
-  }
-  , [searchKey])
+  }, [searchKey])
   
   const ready = timezone.length > 0 && typeof utcOffset === "number"
 
@@ -77,7 +70,6 @@ const ClockCard = ({
         <Location
           utcOffset={utcOffset}
           searchKey={searchKey}
-          locations={locations}
           setLocations={setLocations}
         />
       </>

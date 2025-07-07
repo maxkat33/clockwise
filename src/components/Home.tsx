@@ -121,7 +121,6 @@ const Home = () => {
             is24h={is24h}
             refTimestamp={refTimestamp}
             setRefTimestamp={setRefTimestamp}
-            locations={locations}
             setLocations={setLocations}
             searchKey={searchKey}
           />
