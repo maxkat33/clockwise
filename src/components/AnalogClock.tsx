@@ -18,9 +18,9 @@ const AnalogClock = ( {now, isNow, refTimestamp, timezone}: Props) => {
   }
 
   return (
-    <div className="self-center">
-      <Clock 
-        className="bg-white rounded-full"
+    <div className="self-center w-40 h-40 bg-slate-50 rounded-[50%]">
+      <Clock
+        className="react-clock w-full h-full"
         value={clockDate}
       />
     </div>

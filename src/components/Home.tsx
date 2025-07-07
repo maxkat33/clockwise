@@ -61,31 +61,42 @@ const Home = () => {
   // Tailwind classes
 
   const buttonClass = `
-    text-lg font-bold 
+    flex justify-center items-center
     px-5 py-2.5 text-center rounded-lg
     bg-sky-500 
+    text-base font-bold text-center 
     hover:bg-blue-500 
     focus:ring-4 focus:outline-none focus:ring-sky-600 
     transition-colors duration-300 ease-in-out
-    cursor-pointer 
+    cursor-pointer
+    disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:bg-sky-500 
   `
 
+  const MAX = 4
+  const MIN = 2
+  const atMax = locations.length >= MAX
+  const atMin = locations.length <= MIN
+
   return (
-    <main className="flex-1 overflow-y-auto w-full p-6 flex flex-col gap-4 border border-blue-900">
+    <main className="flex-1 overflow-y-auto w-full px-6 py-2 flex flex-col gap-4">
       <div className="btns-container w-full flex justify-between">
         <div className="add-minus-btns flex gap-2">
           <button
-            className={`${buttonClass} w-14 ${locations.length > 3 && "disabled cursor-not-allowed"}`}        
+            disabled={atMax}
+            className={`${buttonClass} w-14`}
             onClick={() => {
+              if (atMax) return
               setLocations(prev => [...prev, getRandomCity()])
             }}
           >
             +
           </button>
           <button
-            className={`${buttonClass} w-14 ${locations.length < 3 && "disabled cursor-not-allowed"}`}
+            disabled={atMin}
+            className={`${buttonClass} w-14`}
             onClick={() => {
-              setLocations(prev => prev.slice(0, -1))
+              if (atMin) return
+              setLocations((prev => prev.slice(0, -1)))
             }}
           >
             -
@@ -93,26 +104,26 @@ const Home = () => {
           </div>
           <div className="control-btns w-3/5 flex justify-end gap-2">
             <button 
-              className={`${buttonClass} w-28`}
+              className={`${buttonClass} w-[45%]`}
               onClick={() => setIsNow(!isNow)}
             >
               {isNow ? "PAUSE" : "NOW"}
             </button>
             <button
-              className={`${buttonClass} w-28 whitespace-nowrap`}
+              className={`${buttonClass} w-[45%] whitespace-nowrap`}
               onClick={() => setIs24h(!is24h)}
             >
               {is24h ? "AM / PM" : "24H"}
             </button>
         </div>
       </div>
-      <div className="
+      <div className={`
+          py-2
           grid grow gap-6
-          grid-cols-1
-          sm:grid-cols-2
-          auto-rows-fr
           w-full max-w-md sm:max-w-none mx-auto
-      ">
+          auto-rows-fr
+          ${locations.length === 4 ? "grid-cols-2" : "grid-cols-1 sm:grid-cols-2"}
+        `}>
         {locations.map((searchKey, idx)=> (
           <ClockCard 
             key={idx}

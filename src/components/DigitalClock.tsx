@@ -115,49 +115,55 @@ const DigitalClock = ({
 
     return (
     <div 
-        className="self-center text-2xl tracking-wider cursor-pointer"
-        onClick={()=>{ 
-            setIsNow(false)
-        }}
+        className="
+            relative flex justify-center items-center
+            text-2xl tracking-wider
+            cursor-pointer"
+        onClick={() => setIsNow(false)}
     >
-        <select 
-            value={displayHours}
-            className="appearance-none cursor-pointer"
-            onChange={(e) => {
-                setIsNow(false)
-                setDisplayHours(e.target.value)
-            }}
-        >
-            {is24h ? hoursOptions24 : hoursOptions}
-        </select>
-        :
-        <select 
-            value={displayMinutes}
-            className="appearance-none cursor-pointer"
-            onChange={(e) => {
-                setIsNow(false)
-                setDisplayMinutes(e.target.value)
-            }}
-        >
-            {minutesOptions}
-        </select>
-        :
-        <select 
-            value={displaySeconds}
-            className="appearance-none cursor-pointer"
-            onChange={(e) => {
-                setIsNow(false)
-                setDisplaySeconds(e.target.value)
-            }}
-        >
-            {secondsOptions}
-        </select>
-        {!is24h && (
+        <span className="inline-flex space-x-1 tracking-wide">
             <select 
-                value={displayAmPm}
-                className="appearance-none cursor-pointer px-2"
+                value={displayHours}
+                className="appearance-none cursor-pointer"
                 onChange={(e) => {
                     setIsNow(false)
+                    setDisplayHours(e.target.value)
+                }}
+                >
+                {is24h ? hoursOptions24 : hoursOptions}
+            </select>
+            :
+            <select 
+                value={displayMinutes}
+                className="appearance-none cursor-pointer"
+                onChange={(e) => {
+                    setIsNow(false)
+                    setDisplayMinutes(e.target.value)
+                }}
+                >
+                {minutesOptions}
+            </select>
+            :
+            <select 
+                value={displaySeconds}
+                className="appearance-none cursor-pointer"
+                onChange={(e) => {
+                    setIsNow(false)
+                    setDisplaySeconds(e.target.value)
+                }}
+                >
+                {secondsOptions}
+            </select>
+        </span>
+        {!is24h && (
+            <select 
+            value={displayAmPm}
+            className="
+                absolute left-full
+                px-2
+                appearance-none cursor-pointer"
+            onChange={(e) => {
+                setIsNow(false)
                     setDisplayAmPm(e.target.value)
                 }}
             >

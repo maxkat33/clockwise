@@ -58,17 +58,28 @@ const Location = ({ utcOffset, searchKey, setLocations }: Props) => {
         setHighlightedIndex(0)
     }, [query, editing])
 
+    // Tailwind classes
+
+    const textClamp = "text-[clamp(1rem,4.8vw,2rem)]"
+
  
     // Display mode
     if (!editing) {
         return (
-            <div className="flex gap-2 text-xl">
-                <span>{utcOffset !== null ? formatTimezoneString(utcOffset) : "..."}</span>
+            <div className="flex w-full items-center gap-2 px-2 font-[500] tracking-wide">
+                {/* UTC offset - takes as much space as its content needs */}
+                <span className={`flex-shrink-0 ${textClamp}`}>
+                    {utcOffset !== null ? formatTimezoneString(utcOffset) : "..."}
+                </span>
+
+                {/* City & Country - takes remaining space */}
                 <button
-                    className="hover:cursor-pointer hover:underline"
                     onClick={() => setEditing(true)}
-                    >
-                    <span>{city}, {country}</span>
+                    className="flex-grow min-w-0 text-center hover:cursor-pointer hover:underline"
+                >
+                    <span className={`block truncate ${textClamp} font-medium overflow-hidden text-ellipsis`}>
+                    {city}, {country}
+                    </span>
                 </button>
             </div>
         )
@@ -76,7 +87,7 @@ const Location = ({ utcOffset, searchKey, setLocations }: Props) => {
 
     // Edit mode (search input + dropdown)
     return (
-        <div className="relative w-72">
+        <div className="relative w-full">
             <input
                 ref={inputRef}
                 value={query}

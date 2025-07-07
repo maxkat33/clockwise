@@ -50,9 +50,16 @@ const ClockCard = ({
   const ready = timezone.length > 0 && typeof utcOffset === "number"
 
   return (
-    <div className="flex flex-col gap-2 p-3 bg-sky-100">
+    <div className="
+      flex flex-col gap-2 p-3 
+    bg-sky-200 shadow-md shadow-sky-300
+      rounded-xl 
+      hover:shadow-lg hover:shadow-blue-300
+      focus:shadow-lg focus:shadow-blue-300
+      transition-shadow duration-300 ease-in-out
+    ">
       {ready ? (
-      <section className="h-full flex flex-col">
+      <section className="h-full flex flex-col items-center justify-center gap-3">
         <AnalogClock
           now={now}
           isNow={isNow}
