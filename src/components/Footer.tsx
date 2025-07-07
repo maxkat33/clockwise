@@ -1,11 +1,11 @@
-import { PiClockClockwiseFill } from "react-icons/pi";
+import { PiClockClockwiseLight } from "react-icons/pi";
 
 const Footer = () => {
   return (
-    <footer className='p-2 flex justify-center items-center gap-5'>
-      <div className="flex justify-center items-center text-2xl font-[600]">
-        <PiClockClockwiseFill/>
-        <h3>
+    <footer className='shrink-0 p-2 flex justify-center items-center gap-5'>
+      <div className="flex justify-center items-center text-2xl  font-[600]">
+        <PiClockClockwiseLight/>
+        <h3 className="font-[Poiret_One]">
           ClockWise
         </h3>
       </div>

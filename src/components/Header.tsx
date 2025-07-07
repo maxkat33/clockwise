@@ -1,10 +1,10 @@
-import { PiClockClockwiseFill } from "react-icons/pi";
+import { PiClockClockwiseLight } from "react-icons/pi";
 
 const Header = () => {
   return (
-    <header className="p-4 flex items-center gap-2 text-5xl">
-      <PiClockClockwiseFill />
-      <h1 className="font-bold">
+    <header className="shrink-0 py-6 px-4 flex items-center text-5xl font-[Poiret_One] font-bold">
+      <PiClockClockwiseLight />
+      <h1>
         ClockWise
       </h1>
     </header>

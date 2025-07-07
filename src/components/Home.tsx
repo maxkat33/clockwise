@@ -60,59 +60,59 @@ const Home = () => {
 
   // Tailwind classes
 
-  const buttonClass = "w-24 h-12 p-2 bg-amber-200 rounded-xl tracking-wide font-bold cursor-pointer flex justify-center items-center"
+  const buttonClass = `
+    text-lg font-bold 
+    px-5 py-2.5 text-center rounded-lg
+    bg-sky-500 
+    hover:bg-blue-500 
+    focus:ring-4 focus:outline-none focus:ring-sky-600 
+    transition-colors duration-300 ease-in-out
+    cursor-pointer 
+  `
 
   return (
-    <main className="grow w-full p-6 flex flex-col gap-4">
-      <div className="w-full flex justify-between">
-        <div className="flex gap-4 text-3xl">
-          <button 
-              className={buttonClass}
-              onClick={()=>{
-                setLocations((prev)=> {
-                  const randomCity = getRandomCity()
-                  return [...prev, randomCity]
-                })
-                getRandomCity()
-              }}  
-            >
-              +
-            </button>
-            <button 
-              className={buttonClass}
-              onClick={()=>{
-                if (!(locations.length > 2)) return
-                setLocations((prev)=> {
-                  const locs = [...prev]
-                  locs.pop()
-                  return locs
-                })
-                getRandomCity()
-              }}
-            >
-              -
-            </button>
+    <main className="flex-1 overflow-y-auto w-full p-6 flex flex-col gap-4 border border-blue-900">
+      <div className="btns-container w-full flex justify-between">
+        <div className="add-minus-btns flex gap-2">
+          <button
+            className={`${buttonClass} w-14 ${locations.length > 3 && "disabled cursor-not-allowed"}`}        
+            onClick={() => {
+              setLocations(prev => [...prev, getRandomCity()])
+            }}
+          >
+            +
+          </button>
+          <button
+            className={`${buttonClass} w-14 ${locations.length < 3 && "disabled cursor-not-allowed"}`}
+            onClick={() => {
+              setLocations(prev => prev.slice(0, -1))
+            }}
+          >
+            -
+          </button>
           </div>
-          <div className="flex gap-4">
+          <div className="control-btns w-3/5 flex justify-end gap-2">
             <button 
-              className={buttonClass}
-              onClick={()=>{
-                setIsNow(!isNow)
-              }}  
+              className={`${buttonClass} w-28`}
+              onClick={() => setIsNow(!isNow)}
             >
               {isNow ? "PAUSE" : "NOW"}
             </button>
-            <button 
-              className={buttonClass} 
-              onClick={()=>{
-                setIs24h(!is24h)
-              }}
+            <button
+              className={`${buttonClass} w-28 whitespace-nowrap`}
+              onClick={() => setIs24h(!is24h)}
             >
               {is24h ? "AM / PM" : "24H"}
             </button>
         </div>
       </div>
-      <div className="grow flex justify-center items-center gap-10">
+      <div className="
+          grid grow gap-6
+          grid-cols-1
+          sm:grid-cols-2
+          auto-rows-fr
+          w-full max-w-md sm:max-w-none mx-auto
+      ">
         {locations.map((searchKey, idx)=> (
           <ClockCard 
             key={idx}

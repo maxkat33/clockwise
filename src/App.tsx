@@ -4,7 +4,7 @@ import Home from './components/Home'
 
 function App() {
   return (
-    <div className='h-screen w-screen flex flex-col bg-slate-100'>
+    <div className='min-h-screen flex flex-col bg-slate-100 font-[Lato]'>
       <Header />
       <Home />
       <Footer />

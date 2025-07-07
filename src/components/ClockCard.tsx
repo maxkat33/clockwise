@@ -52,7 +52,7 @@ const ClockCard = ({
   return (
     <div className="flex flex-col gap-2 p-3 bg-sky-100">
       {ready ? (
-      <>
+      <section className="h-full flex flex-col">
         <AnalogClock
           now={now}
           isNow={isNow}
@@ -74,7 +74,7 @@ const ClockCard = ({
           searchKey={searchKey}
           setLocations={setLocations}
         />
-      </>
+      </section>
       ) : (
         <p>Loading timezone info...</p>
       )}
