@@ -8,11 +8,9 @@ const Home = () => {
   const [isNow, setIsNow] = useState<boolean>(true)
   const [refTimestamp, setRefTimestamp] = useState<number>(Date.now())
   const [is24h, setIs24h] = useState<boolean>(false)
-  const [refDate, setRefDate] = useState<Date>(new Date())
-  const [refTimezone, setRefTimezone] = useState<string>('Australia/Melbourne')
   
   // not passed as a prop - only needed here to render the correct amount and locations of clockcards
-  const [locations, setLocations] = useState<string[]>(["cairo, egypt", "london, united kingdom"])
+  const [locations, setLocations] = useState<string[]>(["melbourne, australia", "london, united kingdom"])
   // only used here to determine if the first clockcard is the users location or the default value
   const [locationStatus, setLocationStatus] = useState<string>('')
 
@@ -60,11 +58,6 @@ const Home = () => {
 
     })
   }, [])
-
-  // when ref time changes, set it to the refCity time
-  useEffect(()=>{
-
-  }, [refTimestamp, refTimezone])
 
   const buttonClass = "w-24 h-12 p-2 bg-amber-200 rounded-xl tracking-wide font-bold cursor-pointer flex justify-center items-center"
 
@@ -125,12 +118,8 @@ const Home = () => {
             isNow={isNow}
             setIsNow={setIsNow}
             is24h={is24h}
-            refDate={refDate}
-            setRefDate={setRefDate}
             refTimestamp={refTimestamp}
             setRefTimestamp={setRefTimestamp}
-            refTimezone={refTimezone}
-            setRefTimezone={setRefTimezone}
             locations={locations}
             setLocations={setLocations}
             cityCountry={cityCountry}

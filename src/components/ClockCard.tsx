@@ -11,12 +11,10 @@ type Props = {
   isNow: boolean
   setIsNow: React.Dispatch<React.SetStateAction<boolean>>
   is24h: boolean
+
   refTimestamp: number
   setRefTimestamp: React.Dispatch<React.SetStateAction<number>>
-  refDate: Date
-  setRefDate: React.Dispatch<React.SetStateAction<Date>>
-  refTimezone: string
-  setRefTimezone: React.Dispatch<React.SetStateAction<string>>
+  
   locations: string[]
   setLocations: React.Dispatch<React.SetStateAction<string[]>>
   cityCountry: string
@@ -29,10 +27,6 @@ const ClockCard = ({
   is24h,
   refTimestamp,
   setRefTimestamp,
-  refDate,
-  setRefDate,
-  refTimezone,
-  setRefTimezone,
   locations,
   setLocations,
   cityCountry
@@ -75,10 +69,6 @@ const ClockCard = ({
           is24h={is24h}
           refTimestamp={refTimestamp}
           setRefTimestamp={setRefTimestamp}
-          refDate={refDate}
-          setRefDate={setRefDate}
-          refTimezone={refTimezone}
-          setRefTimezone={setRefTimezone}
           timezone={timezone}
           utcOffset={utcOffset}
         />

@@ -10,12 +10,6 @@ type Props = {
     refTimestamp: number
     setRefTimestamp: React.Dispatch<React.SetStateAction<number>>
 
-    refDate: Date
-    setRefDate: React.Dispatch<React.SetStateAction<Date>>
-
-    refTimezone: string
-    setRefTimezone: React.Dispatch<React.SetStateAction<string>>
-
     timezone: string
     utcOffset: number | null
 }
@@ -27,10 +21,6 @@ const DigitalClock = ({
     is24h,
     refTimestamp,
     setRefTimestamp,
-    refDate,
-    setRefDate,
-    refTimezone,
-    setRefTimezone,
     timezone,
     utcOffset
 }: Props) => {
@@ -40,19 +30,7 @@ const DigitalClock = ({
     const [displaySeconds, setDisplaySeconds] = useState<string>("")
     const [displayAmPm, setDisplayAmPm] = useState<string>("")
     
-
-    useEffect(() => {
-        if (!timezone) return 
-        const timestamp = isNow ? now : refTimestamp
-        const displayTime = formatUtcTimestampToDate(timestamp, timezone, is24h).toUpperCase()
-        setDisplayHours(displayTime.slice(0, 2))
-        setDisplayMinutes(displayTime.slice(3,5))
-        setDisplaySeconds(displayTime.slice(6,8))
-        setDisplayAmPm(displayTime.slice(9,11))
-        
-    }, [now, isNow, is24h, refTimestamp])
-
-    useEffect(() => {
+    const updateRefTime = () => {
         if (!isNow && utcOffset) {
 
             const manualDate      = new Date()
@@ -68,14 +46,29 @@ const DigitalClock = ({
 
             const rawUtcDate = new Date(Date.UTC(year, month, day, h24, Number(displayMinutes), Number(displaySeconds)))
             const convertedUtcTimestamp = rawUtcDate.getTime() - utcOffsetMs
-            const convertedUtcDate = new Date(convertedUtcTimestamp)
 
-            setRefDate(convertedUtcDate)
-            setRefTimestamp(convertedUtcTimestamp)
-            setRefTimezone(timezone)
-
+            setRefTimestamp(convertedUtcTimestamp)            
         }
-    }, [displayHours, displayMinutes, displaySeconds, displayAmPm, is24h])
+    }
+
+    useEffect(() => {
+        if (!timezone) return 
+        const timestamp = isNow ? now : refTimestamp
+        const displayTime = formatUtcTimestampToDate(timestamp, timezone, is24h).toUpperCase()
+        setDisplayHours(displayTime.slice(0, 2))
+        setDisplayMinutes(displayTime.slice(3,5))
+        setDisplaySeconds(displayTime.slice(6,8))
+        setDisplayAmPm(displayTime.slice(9,11))
+        
+    }, [now, isNow, is24h, refTimestamp])
+
+
+    useEffect(() => {
+        if (!isNow && displayHours && displayMinutes && displaySeconds && (is24h || displayAmPm)) {
+          updateRefTime()
+        }
+      }, [displayHours, displayMinutes, displaySeconds, displayAmPm])
+      
 
     const hoursOptions = []
     const hoursOptions24 = []
@@ -127,9 +120,8 @@ const DigitalClock = ({
             className="appearance-none cursor-pointer"
             onChange={(e) => {
                 setIsNow(false)
-                setDisplayHours(e.target.value)}
-            }
-            onBlur={()=>{console.log('blur')}}
+                setDisplayHours(e.target.value)
+            }}
         >
             {is24h ? hoursOptions24 : hoursOptions}
         </select>
@@ -139,9 +131,8 @@ const DigitalClock = ({
             className="appearance-none cursor-pointer"
             onChange={(e) => {
                 setIsNow(false)
-                setDisplayMinutes(e.target.value)}
-            }
-            onBlur={()=>{console.log('blur')}}
+                setDisplayMinutes(e.target.value)
+            }}
         >
             {minutesOptions}
         </select>
@@ -151,9 +142,8 @@ const DigitalClock = ({
             className="appearance-none cursor-pointer"
             onChange={(e) => {
                 setIsNow(false)
-                setDisplaySeconds(e.target.value)}
-            }
-            onBlur={()=>{console.log('blur')}}
+                setDisplaySeconds(e.target.value)
+            }}
         >
             {secondsOptions}
         </select>
@@ -163,9 +153,8 @@ const DigitalClock = ({
                 className="appearance-none cursor-pointer px-2"
                 onChange={(e) => {
                     setIsNow(false)
-                    setDisplayAmPm(e.target.value)}
-                }
-                onBlur={()=>{console.log('blur')}}
+                    setDisplayAmPm(e.target.value)
+                }}
             >
                 <option>AM</option>
                 <option>PM</option>
