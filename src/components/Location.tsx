@@ -4,12 +4,12 @@ import { formatTimezoneString, capitaliseString } from "../utils"
 
 type Props = {
     utcOffset: number | null
-    cityCountry: string
+    searchKey: string
     locations: string[]
     setLocations: React.Dispatch<React.SetStateAction<string[]>>
 }
 
-const Location = ({ utcOffset, cityCountry, locations, setLocations }: Props) => {
+const Location = ({ utcOffset, searchKey, locations, setLocations }: Props) => {
 
     //function that has input drop down of cities and updates locations with city of new location
     
@@ -19,15 +19,14 @@ const Location = ({ utcOffset, cityCountry, locations, setLocations }: Props) =>
 
     useEffect(() => {
 
-        if (utcOffset && cityCountry) {
+        if (utcOffset!== null && utcOffset !== undefined) {
             setTimezone(formatTimezoneString(utcOffset))
-            const [city, country] = cityCountry.split(', ')
+            const [city, country] = searchKey.split(', ')
             setCity(capitaliseString(city))
             setCountry(capitaliseString(country))
         }
 
-
-    }, [utcOffset, city, country, timezone])
+    }, [utcOffset, searchKey])
 
 
     return (

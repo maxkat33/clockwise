@@ -17,7 +17,7 @@ type Props = {
   
   locations: string[]
   setLocations: React.Dispatch<React.SetStateAction<string[]>>
-  cityCountry: string
+  searchKey: string
 }
 
 const ClockCard = ({
@@ -29,7 +29,7 @@ const ClockCard = ({
   setRefTimestamp,
   locations,
   setLocations,
-  cityCountry
+  searchKey
 }: Props) => {
   
   // each clockcard tracks now itself to avoid re rendering the entire app every second - only the clockcard itself
@@ -38,23 +38,25 @@ const ClockCard = ({
   
 
   useEffect(() => {
-    const cityData = getCityData(cityCountry)
+    console.log("Looking up city data for:", searchKey)
+    const cityData = getCityData(searchKey)
+    console.log("City data found:", cityData)
     // console.log('cityData:', cityData)
     if (cityData) {
       setUtcOffset(cityData.utcOffset)
       setTimezone(cityData.timezone)
+    } else {
+      setUtcOffset(null)
+      setTimezone("")
     }
   }
-  , [cityCountry])
+  , [searchKey])
   
-  // function that converts ref time to ref time formatted to timezone
-
-
-  // function to determine timezone from coords
+  const ready = timezone.length > 0 && typeof utcOffset === "number"
 
   return (
     <div className="flex flex-col gap-2 p-3 bg-sky-100">
-      {timezone && utcOffset !== null ? (
+      {ready ? (
       <>
         <AnalogClock
           now={now}
@@ -74,7 +76,7 @@ const ClockCard = ({
         />
         <Location
           utcOffset={utcOffset}
-          cityCountry={cityCountry}
+          searchKey={searchKey}
           locations={locations}
           setLocations={setLocations}
         />

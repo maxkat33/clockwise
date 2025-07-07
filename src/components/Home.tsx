@@ -112,7 +112,7 @@ const Home = () => {
         </div>
       </div>
       <div className="grow flex justify-center items-center gap-10">
-        {locations.map((cityCountry, idx)=> (
+        {locations.map((searchKey, idx)=> (
           <ClockCard 
             key={idx}
             now={now}
@@ -123,7 +123,7 @@ const Home = () => {
             setRefTimestamp={setRefTimestamp}
             locations={locations}
             setLocations={setLocations}
-            cityCountry={cityCountry}
+            searchKey={searchKey}
           />
         ))}
       </div>

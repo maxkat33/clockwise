@@ -1,3 +1,2 @@
 - reference time displayed and able to drop-down for date, time and location?
 - intitial load of user location takes a little while, not sure why at this stage.
-- onblur issue - not so user friendly
