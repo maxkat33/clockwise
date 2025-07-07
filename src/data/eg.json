@@ -1,0 +1,29 @@
+[
+    {
+    "city": "Melbourne",
+    "country": "Australia",
+    "timezone": "Australia/Melbourne",
+    "utcOffset": 10.0,
+    "lat": -37.814,
+    "lon": 144.96332,
+    "searchKey": "melbourne, australia"
+  },
+  {
+    "city": "Brisbane",
+    "country": "Australia",
+    "timezone": "Australia/Brisbane",
+    "utcOffset": 10.0,
+    "lat": -27.46794,
+    "lon": 153.02809,
+    "searchKey": "brisbane, australia"
+  },
+  {
+    "city": "Perth",
+    "country": "Australia",
+    "timezone": "Australia/Perth",
+    "utcOffset": 8.0,
+    "lat": -31.95224,
+    "lon": 115.8614,
+    "searchKey": "perth, australia"
+  }
+]

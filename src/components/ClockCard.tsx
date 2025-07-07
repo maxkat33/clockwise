@@ -1,80 +1,97 @@
 import { useState, useEffect } from "react"
 
+import { getCityData } from "../utils"
+
 import AnalogClock from "./AnalogClock"
 import DigitalClock from "./DigitalClock"
-import Timezone from "./Timezone"
+import Location from "./Location"
 
 type Props = {
+  now: number
   isNow: boolean
   setIsNow: React.Dispatch<React.SetStateAction<boolean>>
   is24h: boolean
-  manualTime: string
-  setManualTime: React.Dispatch<React.SetStateAction<string>>
-  coords: [number, number]
-  setRefCoords: React.Dispatch<React.SetStateAction<[number, number] | null>>
-  locations: Array<[number, number]>
-  setLocations: React.Dispatch<React.SetStateAction<Array<[number, number]>>>
+  refTimestamp: number
+  setRefTimestamp: React.Dispatch<React.SetStateAction<number>>
+  refDate: Date
+  setRefDate: React.Dispatch<React.SetStateAction<Date>>
+  refTimezone: string
+  setRefTimezone: React.Dispatch<React.SetStateAction<string>>
+  locations: string[]
+  setLocations: React.Dispatch<React.SetStateAction<string[]>>
+  cityCountry: string
 }
 
 const ClockCard = ({
+  now,
   isNow,
   setIsNow,
   is24h,
-  manualTime,
-  setManualTime,
-  coords,
-  setRefCoords,
+  refTimestamp,
+  setRefTimestamp,
+  refDate,
+  setRefDate,
+  refTimezone,
+  setRefTimezone,
   locations,
-  setLocations
+  setLocations,
+  cityCountry
 }: Props) => {
   
   // each clockcard tracks now itself to avoid re rendering the entire app every second - only the clockcard itself
-  const [now, setNow] = useState<number>(Date.now())
+  const [utcOffset, setUtcOffset] = useState<number | null>(null)
   const [timezone, setTimezone] = useState<string>("")
-  const [cityCountry, setCityCountry] = useState<string>("")
   
-  // function that determines timezone 
-  
-  // function that converts manual time to manual time formatted to timezone
 
-  // If now === true, update now's state every second so that it is accurate to the exact current time in this timezone
   useEffect(() => {
-    // change to incorporate timezone
-    if (!isNow) return
-    const interval = setInterval(() => {
-      setNow(Date.now())
-    }, 1000)
+    const cityData = getCityData(cityCountry)
+    // console.log('cityData:', cityData)
+    if (cityData) {
+      setUtcOffset(cityData.utcOffset)
+      setTimezone(cityData.timezone)
+    }
+  }
+  , [cityCountry])
+  
+  // function that converts ref time to ref time formatted to timezone
 
-    return () => clearInterval(interval)
-
-  }, [isNow])
 
   // function to determine timezone from coords
 
   return (
     <div className="flex flex-col gap-2 p-3 bg-sky-100">
+      {timezone && utcOffset !== null ? (
+      <>
         <AnalogClock
           now={now}
           isNow={isNow}
-          manualTime={manualTime}
+          refTimestamp={refTimestamp}
+          timezone={timezone}
         />
         <DigitalClock 
           now={now}
           isNow={isNow}
           setIsNow={setIsNow}
           is24h={is24h}
-          manualTime={manualTime}
-          setManualTime={setManualTime}
-          coords={coords}
-          setRefCoords={setRefCoords}
+          refTimestamp={refTimestamp}
+          setRefTimestamp={setRefTimestamp}
+          refDate={refDate}
+          setRefDate={setRefDate}
+          refTimezone={refTimezone}
+          setRefTimezone={setRefTimezone}
           timezone={timezone}
+          utcOffset={utcOffset}
         />
-        <Timezone 
-          timezone={timezone}
+        <Location
+          utcOffset={utcOffset}
           cityCountry={cityCountry}
           locations={locations}
           setLocations={setLocations}
         />
+      </>
+      ) : (
+        <p>Loading timezone info...</p>
+      )}
     </div>
   )
 }
