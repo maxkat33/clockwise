@@ -80,6 +80,7 @@ const Home = () => {
             <button 
               className={buttonClass}
               onClick={()=>{
+                if (!(locations.length > 2)) return
                 setLocations((prev)=> {
                   const locs = [...prev]
                   locs.pop()
