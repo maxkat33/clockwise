@@ -62,9 +62,9 @@ const Home = () => {
 
   const buttonClass = `
     flex justify-center items-center
-    px-5 py-2.5 text-center rounded-lg
+    px-5 py-2.5 rounded-lg
     bg-sky-500 
-    text-base font-bold text-center 
+    font-bold text-center tracking-wider
     hover:bg-blue-500 
     focus:ring-4 focus:outline-none focus:ring-sky-600 
     transition-colors duration-300 ease-in-out
@@ -78,9 +78,9 @@ const Home = () => {
   const atMin = locations.length <= MIN
 
   return (
-    <main className="flex-1 overflow-y-auto w-full px-6 py-2 flex flex-col gap-4">
-      <div className="btns-container w-full flex justify-between">
-        <div className="add-minus-btns flex gap-2">
+    <main className="flex flex-col flex-1 w-full px-6 overflow-y-auto">
+      <div className="flex justify-between w-full py-4 btns-container">
+        <div className="flex gap-2 text-2xl add-minus-btns">
           <button
             disabled={atMax}
             className={`${buttonClass} w-14`}
@@ -102,7 +102,7 @@ const Home = () => {
             -
           </button>
           </div>
-          <div className="control-btns w-3/5 flex justify-end gap-2">
+          <div className="flex justify-end w-3/5 gap-2 text-base control-btns">
             <button 
               className={`${buttonClass} w-[45%]`}
               onClick={() => setIsNow(!isNow)}

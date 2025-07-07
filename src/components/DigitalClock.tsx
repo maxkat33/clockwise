@@ -16,13 +16,13 @@ type Props = {
 const sizeMap: Record<number, string> = {
     1: "text-4xl",
     2: "text-2xl",
-    3: "text-xl",
+    3: "text-[1.2rem]",
     4: "text-lg",
     5: "text-base",
     6: "text-base",
     7: "text-sm",
     8: "text-sm",
-  }  
+}  
 
 const DigitalClock = ({
     now,
@@ -144,6 +144,7 @@ const DigitalClock = ({
                 onChange={(e) => {
                     setIsNow(false)
                     setDisplayHours(e.target.value)
+                    setDisplaySeconds('00')
                 }}
                 >
                 {is24h ? hoursOptions24 : hoursOptions}
@@ -155,6 +156,7 @@ const DigitalClock = ({
                 onChange={(e) => {
                     setIsNow(false)
                     setDisplayMinutes(e.target.value)
+                    setDisplaySeconds('00')
                 }}
                 >
                 {minutesOptions}

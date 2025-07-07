@@ -73,7 +73,7 @@ const Location = ({ utcOffset, searchKey, locations, setLocations }: Props) => {
                 </span>
                 <button
                     onClick={() => setEditing(true)}
-                    className="flex-grow min-w-0 ml-2 text-left hover:cursor-pointer hover:underline"
+                    className="flex-grow min-w-0 ml-1 text-left hover:cursor-pointer hover:underline"
                 >
                     <span className={`block truncate ${textClamp} font-medium overflow-hidden text-ellipsis`}>
                     {city}, {country}
@@ -85,7 +85,7 @@ const Location = ({ utcOffset, searchKey, locations, setLocations }: Props) => {
 
     // Edit mode (search input + dropdown)
     return (
-        <div className="relative w-full">
+        <div className="relative w-full bg-slate-200">
             <input
                 ref={inputRef}
                 value={query}
