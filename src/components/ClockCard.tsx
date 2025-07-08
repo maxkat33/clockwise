@@ -49,12 +49,24 @@ const ClockCard = ({
     }
   }, [searchKey])
   
-  const ready = timezone.length > 0 && typeof utcOffset === "number"
+  // Tailwind classes
+  
 
   return (
-    <div className="p-3 transition-shadow duration-300 ease-in-out shadow-md bg-sky-200 shadow-sky-300 rounded-xl hover:shadow-lg hover:shadow-blue-300 focus:shadow-lg focus:shadow-blue-300">
-      {ready ? (
-      <section className={`flex flex-col items-center justify-center h-full gap-${locations.length === 2 ? "2" : "1"}`}>
+    <div className={`
+      clockCard
+      py-4 ${locations.length === 4 ? "px-3" : "px-4"}
+      bg-sky-200 rounded-xl 
+      shadow-md shadow-sky-300 
+      hover:shadow-lg hover:shadow-blue-300 
+      focus:shadow-lg focus:shadow-blue-300
+      transition-shadow duration-300 ease-in-out 
+    `}>
+      {timezone.length > 0 && typeof utcOffset === "number" ? (
+      <section className={`
+        h-full 
+        flex flex-col justify-start items-center gap-${locations.length === 3 ? "1" : "2"}
+      `}>
         <AnalogClock
           now={now}
           isNow={isNow}

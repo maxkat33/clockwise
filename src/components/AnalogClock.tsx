@@ -15,7 +15,7 @@ const sizeMap: Record<number, string> = {
   1: "w-80 h-80",  // 80px by 80px
   2: "w-40 h-40",
   3: "w-22 h-22",
-  4: "w-18 h-18",
+  4: "w-22 h-22",
   5: "w-16 h-16",
   6: "w-16 h-16",
   7: "w-16 h-16",
@@ -33,7 +33,7 @@ const AnalogClock = ( {now, isNow, refTimestamp, timezone, locations}: Props) =>
   const clockSize = sizeMap[count] || sizeMap[8];
 
   return (
-    <div className={`self-center ${clockSize} bg-slate-50 rounded-[50%]`}>
+    <div className={`${locations.length === 4 ? "mt-4" : ""} self-center ${clockSize} bg-slate-50 rounded-[50%]`}>
       <Clock
         className="w-full h-full react-clock"
         value={clockDate}

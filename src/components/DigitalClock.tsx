@@ -134,7 +134,11 @@ const DigitalClock = ({
 
     return (
     <div 
-        className={`relative flex items-center justify-center ${textSize} tracking-wider cursor-pointer`}
+        className={`
+            relative flex items-center justify-center ${count === 4 ? "self-start" : ""} 
+            ${textSize} tracking-wider 
+            cursor-pointer
+        `}
         onClick={() => setIsNow(false)}
     >
         <span className="inline-flex space-x-1 tracking-wide">
@@ -176,7 +180,7 @@ const DigitalClock = ({
         {!is24h && (
             <select 
             value={displayAmPm}
-            className="absolute px-2 appearance-none cursor-pointer left-full"
+            className={`absolute px-2 appearance-none cursor-pointer left-full`}
             onChange={(e) => {
                 setIsNow(false)
                     setDisplayAmPm(e.target.value)

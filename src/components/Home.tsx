@@ -62,20 +62,21 @@ const Home = () => {
 
   const buttonClass = `
     flex justify-center items-center
-    px-5 py-2.5 rounded-lg
-    bg-sky-500 
+    px-5 py-2 rounded-xl
+    bg-sky-500 shadow-sm shadow-sky-600
     font-bold text-center tracking-wider
-    hover:bg-blue-500 
-    focus:ring-4 focus:outline-none focus:ring-sky-600 
-    transition-colors duration-300 ease-in-out
     cursor-pointer
+    hover:bg-blue-500 
+    focus:ring-2 focus:outline-none focus:ring-sky-600 
+    transition-colors duration-300 ease-in-out
     disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:bg-sky-500 
   `
-
   const MAX = 4
   const MIN = 2
   const atMax = locations.length >= MAX
   const atMin = locations.length <= MIN
+
+  const gridClass = locations.length === 4 ? "grid-cols-2" : "grid-cols-1"
 
   return (
     <main className="flex flex-col flex-1 w-full px-6 overflow-y-auto">
@@ -118,11 +119,11 @@ const Home = () => {
         </div>
       </div>
       <div className={`
-          py-2
-          grid grow gap-6
-          w-full max-w-md sm:max-w-none mx-auto
+          clockCardsContainer
+          grow w-full
+          grid ${gridClass} gap-6
           auto-rows-fr
-          ${locations.length === 4 ? "grid-cols-2" : "grid-cols-1 sm:grid-cols-2"}
+          py-2
         `}>
         {locations.map((searchKey, idx)=> (
           <ClockCard 

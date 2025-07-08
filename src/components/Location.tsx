@@ -67,15 +67,25 @@ const Location = ({ utcOffset, searchKey, locations, setLocations }: Props) => {
     // Display mode
     if (!editing) {
         return (
-            <div className={`flex ${locations.length === 4 ? "flex-col" : ""} w-full items-center gap-2 px-2 font-[500] tracking-wide`}>
-                <span className={`flex-shrink-0 ${textClamp}`}>
+            <div className={`
+                flex ${locations.length === 4 ? "flex-col" : "items-center"} gap-2
+                w-full 
+                font-[500] tracking-wide
+            `}>
+                <span className={`flex-shrink-0 ${textClamp} ${locations.length === 4 ? "" : "pl-2"} `}>
                     {utcOffset !== null ? formatTimezoneString(utcOffset) : "..."}
                 </span>
                 <button
                     onClick={() => setEditing(true)}
-                    className="flex-grow min-w-0 ml-1 text-left hover:cursor-pointer hover:underline"
+                    className={`
+                        flex-grow min-w-0 ${locations.length === 4 ? "" : "ml-1"}
+                        text-left 
+                        hover:cursor-pointer hover:underline`}
                 >
-                    <span className={`block truncate ${textClamp} font-medium overflow-hidden text-ellipsis`}>
+                    <span className={`
+                        ${textClamp} font-medium 
+                        ${locations.length === 4 ? "whitespace-normal break-words" : "block truncate overflow-hidden text-ellipsis"}
+                    `}>
                     {city}, {country}
                     </span>
                 </button>
