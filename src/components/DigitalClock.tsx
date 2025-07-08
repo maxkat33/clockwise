@@ -135,7 +135,7 @@ const DigitalClock = ({
     <div 
         className={`
             flex items-center justify-center gap-2
-            w-[70%]
+            ${locations.length === 4 ? "w-full" : "w-[70%]" }
             ${textSize} tracking-wider
             bg-white/20 backdrop-blur-sm rounded-lg
             shadow-inner shadow-blue-100

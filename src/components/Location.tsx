@@ -91,7 +91,7 @@ const Location = ({ utcOffset, searchKey, locations, setLocations }: Props) => {
         return (
             <div className={`
                 relative
-                flex flex-col justify-center items-center
+                flex flex-col justify-center items-center ${locations.length === 4 ? "mb-auto" : ""}
                 w-full 
                 tracking-wide
             `}>
