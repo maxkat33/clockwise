@@ -55,7 +55,7 @@ const ClockCard = ({
   return (
     <div className={`
       clockCard
-      py-4 ${locations.length === 4 ? "px-3" : "px-4"}
+      ${locations.length === 4 ? "px-3 py-4" : "px-4 py-2"}
       bg-gradient-to-br from-sky-200 to-blue-400
       rounded-xl 
       shadow-md shadow-blue-400 
@@ -66,9 +66,10 @@ const ClockCard = ({
       {timezone.length > 0 && typeof utcOffset === "number" ? (
       <section className={`
         h-full 
-        flex flex-col justify-start items-center ${locations.length === 3 ? "gap-1" : "gap-3"} 
+        flex flex-col justify-end items-center ${locations.length === 3 ? "gap-1" : "gap-3"} 
       `}>
         <Location
+        utcOffset={utcOffset}
           searchKey={searchKey}
           locations={locations}
           setLocations={setLocations}

@@ -134,16 +134,12 @@ const DigitalClock = ({
     return (
     <div 
         className={`
-            relative 
-            flex items-center gap-2
+            flex items-center justify-center gap-2
             w-full
             ${textSize} tracking-wider 
         `}
         onClick={() => setIsNow(false)}
     >
-        <span>
-            {utcOffset !== null ? formatTimezoneString(utcOffset) : "..."}
-        </span>
         <span className="inline-flex space-x-1 tracking-wide cursor-pointer">
             <select 
                 value={displayHours}

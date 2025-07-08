@@ -7,9 +7,10 @@ type Props = {
   searchKey: string
   locations: string[]
   setLocations: React.Dispatch<React.SetStateAction<string[]>>
+  utcOffset: number | null
 }
 
-const Location = ({ searchKey, locations, setLocations }: Props) => {
+const Location = ({ utcOffset, searchKey, locations, setLocations }: Props) => {
 
     // state
 
@@ -65,13 +66,16 @@ const Location = ({ searchKey, locations, setLocations }: Props) => {
     if (!editing) {
         return (
             <div className={`
-                flex justify-center
+                flex ${locations.length === 4 ? "flex-col" : ""} justify-center items-center gap-2
                 w-full 
-                font-[600] text-[1.4rem] tracking-wide
+                font-[600] text-[1.1rem] tracking-wide
             `}>
+                <span>
+                    {utcOffset !== null ? formatTimezoneString(utcOffset) : "..."}
+                </span>
                 <button
                     onClick={() => setEditing(true)}
-                    className={`${locations.length === 4 ? "whitespace-normal break-words" : "block truncate overflow-hidden text-ellipsis"} hover:cursor-pointer hover:underline`}
+                    className={`${locations.length === 4 ? "order-first whitespace-normal break-words" : "block truncate overflow-hidden text-ellipsis"} hover:cursor-pointer hover:underline`}
                 >
                     {city}, {country}
                 </button>
