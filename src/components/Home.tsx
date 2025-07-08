@@ -79,8 +79,8 @@ const Home = () => {
   const gridClass = locations.length === 4 ? "grid-cols-2" : "grid-cols-1"
 
   return (
-    <main className="flex flex-col flex-1 w-full px-6 overflow-y-auto">
-      <div className="flex justify-between w-full py-4 btns-container">
+    <main className="grow flex flex-col flex-1 w-full justify-evenly px-6 overflow-y-auto">
+      <div className="flex justify-between w-full pt-3.5 pb-1.5 btns-container">
         <div className="flex gap-2 text-2xl add-minus-btns">
           <button
             disabled={atMax}
@@ -121,7 +121,7 @@ const Home = () => {
       <div className={`
           clockCardsContainer
           grow w-full
-          grid ${gridClass} gap-6
+          grid ${gridClass} gap-5
           auto-rows-fr
           py-2
         `}>

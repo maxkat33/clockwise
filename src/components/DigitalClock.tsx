@@ -15,8 +15,8 @@ type Props = {
 
 const sizeMap: Record<number, string> = {
     1: "text-4xl",
-    2: "text-2xl",
-    3: "text-[1.2rem]",
+    2: "text-[1.38rem]",
+    3: "text-[1.15rem]",
     4: "text-lg",
     5: "text-base",
     6: "text-base",
@@ -135,8 +135,12 @@ const DigitalClock = ({
     <div 
         className={`
             flex items-center justify-center gap-2
-            w-full
-            ${textSize} tracking-wider 
+            w-[70%]
+            ${textSize} tracking-wider
+            bg-white/20 backdrop-blur-sm rounded-lg
+            shadow-inner shadow-blue-100
+            hover:scale-[1.05]
+            transition-all duration-300 ease-in-out 
         `}
         onClick={() => setIsNow(false)}
     >

@@ -10,6 +10,28 @@ type Props = {
   utcOffset: number | null
 }
 
+const sizeMap: Record<number, string> = {
+    1: "text-4xl",
+    2: "text-[1.35rem]",
+    3: "text-[1.15rem]",
+    4: "text-lg",
+    5: "text-base",
+    6: "text-base",
+    7: "text-sm",
+    8: "text-sm",
+} 
+
+const utcSizeMap: Record<number, string> = {
+    1: "text-3xl",
+    2: "text-[1.2rem]",
+    3: "text-[1rem]",
+    4: "text-base",
+    5: "text-sm",
+    6: "text-sm",
+    7: "text-xs",
+    8: "text-xs",
+}
+
 const Location = ({ utcOffset, searchKey, locations, setLocations }: Props) => {
 
     // state
@@ -59,26 +81,29 @@ const Location = ({ utcOffset, searchKey, locations, setLocations }: Props) => {
 
     // Tailwind classes
 
-    const textClamp = "text-[clamp(1rem,4.8vw,2rem)]"
+    const count = Math.min(locations.length, 8)
+    const textSize = sizeMap[count] || sizeMap[8]
+    const utcTextSize = utcSizeMap[count] || sizeMap[8]
 
  
     // Display mode
     if (!editing) {
         return (
             <div className={`
-                flex ${locations.length === 4 ? "flex-col" : ""} justify-center items-center gap-2
+                relative
+                flex flex-col justify-center items-center
                 w-full 
-                font-[600] text-[1.1rem] tracking-wide
+                tracking-wide
             `}>
-                <span>
-                    {utcOffset !== null ? formatTimezoneString(utcOffset) : "..."}
-                </span>
                 <button
                     onClick={() => setEditing(true)}
-                    className={`${locations.length === 4 ? "order-first whitespace-normal break-words" : "block truncate overflow-hidden text-ellipsis"} hover:cursor-pointer hover:underline`}
-                >
+                    className={`font-[600] ${textSize} ${locations.length === 4 ? "whitespace-normal break-words" : "block truncate overflow-hidden text-ellipsis"} hover:cursor-pointer hover:scale-[1.05] transition-all duration-400 ease-in-out`}
+                    >
                     {city}, {country}
                 </button>
+                <span className={`font-[500] ${utcTextSize}`}>
+                    {utcOffset !== null ? formatTimezoneString(utcOffset) : "..."}
+                </span>
             </div>
         )
     }

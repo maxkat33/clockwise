@@ -4,9 +4,8 @@ const Footer = () => {
   return (
     <footer className='shrink-0 p-2 flex justify-center items-center gap-5 text-xl'>
       <div className="flex justify-center items-center text-2xl font-[600]">
-        <PiClockClockwiseLight/>
-        <h3 className="font-[Poiret_One]">
-          ClockWise
+        <h3 className="flex items-center text-xl font-[300]">
+          CL<PiClockClockwiseLight />CK<span className="font-[500]">WISE</span>
         </h3>
       </div>
       <p className="font-[300]">©2025</p>

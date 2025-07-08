@@ -55,18 +55,15 @@ const ClockCard = ({
   return (
     <div className={`
       clockCard
-      ${locations.length === 4 ? "px-3 py-4" : "px-4 py-2"}
+      ${locations.length === 4 ? "px-3 py-4" : "px-4 py-3"}
       bg-gradient-to-br from-sky-200 to-blue-400
       rounded-xl 
-      shadow-md shadow-blue-400 
-      hover:shadow-lg hover:shadow-blue-300 
-      focus:shadow-lg focus:shadow-blue-300
-      transition-shadow duration-300 ease-in-out 
+      shadow-md shadow-blue-300 
     `}>
       {timezone.length > 0 && typeof utcOffset === "number" ? (
       <section className={`
         h-full 
-        flex flex-col justify-end items-center ${locations.length === 3 ? "gap-1" : "gap-3"} 
+        flex flex-col justify-center items-center ${locations.length === 3 ? "gap-1" : "gap-2"}
       `}>
         <Location
         utcOffset={utcOffset}

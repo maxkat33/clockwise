@@ -14,8 +14,8 @@ type Props = {
 const sizeMap: Record<number, string> = {
   1: "w-80 h-80",  // 80px by 80px
   2: "w-38 h-38",
-  3: "w-22 h-22",
-  4: "w-22 h-22",
+  3: "w-20 h-20",
+  4: "w-20 h-20",
   5: "w-16 h-16",
   6: "w-16 h-16",
   7: "w-16 h-16",
