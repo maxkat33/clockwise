@@ -63,7 +63,7 @@ const ClockCard = ({
       {timezone.length > 0 && typeof utcOffset === "number" ? (
       <section className={`
         h-full
-        flex flex-col items-center ${locations.length === 4 ? "justify-end" : "justify-center"}  ${locations.length === 4 ? "gap-4" : locations.length === 3 ? "gap-1" : "gap-2"}
+        flex flex-col items-center ${locations.length === 4 ? "justify-end" : "justify-center"}  ${locations.length === 4 ? "gap-4" : locations.length === 3 ? "gap-2" : "gap-2"}
       `}>
         <Location
         utcOffset={utcOffset}

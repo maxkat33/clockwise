@@ -16,12 +16,8 @@ type Props = {
 const sizeMap: Record<number, string> = {
     1: "text-4xl",
     2: "text-[1.38rem]",
-    3: "text-[1.15rem]",
-    4: "text-lg",
-    5: "text-base",
-    6: "text-base",
-    7: "text-sm",
-    8: "text-sm",
+    3: "text-[1.1rem]",
+    4: "text-lg"
 }  
 
 const DigitalClock = ({
@@ -135,7 +131,7 @@ const DigitalClock = ({
     <div 
         className={`
             flex items-center justify-center gap-2
-            ${locations.length === 4 ? "w-full" : "w-[70%]" }
+            ${locations.length === 4 ? "w-full" : locations.length === 3 ? "w-[50%]" : "w-[60%]" }
             ${textSize} tracking-wider
             bg-white/20 backdrop-blur-sm rounded-lg
             shadow-inner shadow-blue-100

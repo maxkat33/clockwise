@@ -14,22 +14,14 @@ const sizeMap: Record<number, string> = {
     1: "text-4xl",
     2: "text-[1.35rem]",
     3: "text-[1.15rem]",
-    4: "text-lg",
-    5: "text-base",
-    6: "text-base",
-    7: "text-sm",
-    8: "text-sm",
+    4: "text-[1.2rem]"
 } 
 
 const utcSizeMap: Record<number, string> = {
     1: "text-3xl",
     2: "text-[1.2rem]",
-    3: "text-[1rem]",
-    4: "text-base",
-    5: "text-sm",
-    6: "text-sm",
-    7: "text-xs",
-    8: "text-xs",
+    3: "text-[1.rem]",
+    4: "text-[1rem]"
 }
 
 const Location = ({ utcOffset, searchKey, locations, setLocations }: Props) => {
