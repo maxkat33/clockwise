@@ -4,13 +4,12 @@ import { SEARCH_KEYS } from "../data/citiesSearchKeys"
 import { useTypeahead } from "../hooks/useTypeahead"
 
 type Props = {
-  utcOffset: number | null
   searchKey: string
   locations: string[]
   setLocations: React.Dispatch<React.SetStateAction<string[]>>
 }
 
-const Location = ({ utcOffset, searchKey, locations, setLocations }: Props) => {
+const Location = ({ searchKey, locations, setLocations }: Props) => {
 
     // state
 
@@ -42,12 +41,10 @@ const Location = ({ utcOffset, searchKey, locations, setLocations }: Props) => {
 
     // Split city and country for display
     useEffect(() => {
-        if (utcOffset !== null) {
             const [c, cn] = searchKey.split(", ")
             setCity(capitaliseString(c))
             setCountry(capitaliseString(cn))
-        }
-    }, [utcOffset, searchKey])
+    }, [searchKey])
 
     // Focus the input on edit mode
     useEffect(() => {
@@ -68,26 +65,15 @@ const Location = ({ utcOffset, searchKey, locations, setLocations }: Props) => {
     if (!editing) {
         return (
             <div className={`
-                flex ${locations.length === 4 ? "flex-col" : "items-center"} gap-2
+                flex justify-center
                 w-full 
-                font-[500] tracking-wide
+                font-[600] text-[1.4rem] tracking-wide
             `}>
-                <span className={`flex-shrink-0 ${textClamp} ${locations.length === 4 ? "" : "pl-2"} `}>
-                    {utcOffset !== null ? formatTimezoneString(utcOffset) : "..."}
-                </span>
                 <button
                     onClick={() => setEditing(true)}
-                    className={`
-                        flex-grow min-w-0 ${locations.length === 4 ? "" : "ml-1"}
-                        text-left 
-                        hover:cursor-pointer hover:underline`}
+                    className={`${locations.length === 4 ? "whitespace-normal break-words" : "block truncate overflow-hidden text-ellipsis"} hover:cursor-pointer hover:underline`}
                 >
-                    <span className={`
-                        ${textClamp} font-medium 
-                        ${locations.length === 4 ? "whitespace-normal break-words" : "block truncate overflow-hidden text-ellipsis"}
-                    `}>
                     {city}, {country}
-                    </span>
                 </button>
             </div>
         )

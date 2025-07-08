@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { formatUtcTimestampToDate } from "../utils.ts"
+import { formatUtcTimestampToDate, formatTimezoneString } from "../utils.ts"
 
 type Props = {
     now: number
@@ -128,20 +128,23 @@ const DigitalClock = ({
 
     // Tailwind classes
 
-    //test comment
     const count = Math.min(locations.length, 8)
     const textSize = sizeMap[count] || sizeMap[8]
 
     return (
     <div 
         className={`
-            relative flex items-center justify-center ${count === 4 ? "self-start" : ""} 
+            relative 
+            flex items-center gap-2
+            w-full
             ${textSize} tracking-wider 
-            cursor-pointer
         `}
         onClick={() => setIsNow(false)}
     >
-        <span className="inline-flex space-x-1 tracking-wide">
+        <span>
+            {utcOffset !== null ? formatTimezoneString(utcOffset) : "..."}
+        </span>
+        <span className="inline-flex space-x-1 tracking-wide cursor-pointer">
             <select 
                 value={displayHours}
                 className="appearance-none cursor-pointer"
@@ -180,7 +183,7 @@ const DigitalClock = ({
         {!is24h && (
             <select 
             value={displayAmPm}
-            className={`absolute px-2 appearance-none cursor-pointer left-full`}
+            className={`appearance-none cursor-pointer`}
             onChange={(e) => {
                 setIsNow(false)
                     setDisplayAmPm(e.target.value)

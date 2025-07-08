@@ -56,8 +56,9 @@ const ClockCard = ({
     <div className={`
       clockCard
       py-4 ${locations.length === 4 ? "px-3" : "px-4"}
-      bg-sky-200 rounded-xl 
-      shadow-md shadow-sky-300 
+      bg-gradient-to-br from-sky-200 to-blue-400
+      rounded-xl 
+      shadow-md shadow-blue-400 
       hover:shadow-lg hover:shadow-blue-300 
       focus:shadow-lg focus:shadow-blue-300
       transition-shadow duration-300 ease-in-out 
@@ -65,8 +66,13 @@ const ClockCard = ({
       {timezone.length > 0 && typeof utcOffset === "number" ? (
       <section className={`
         h-full 
-        flex flex-col justify-start items-center gap-${locations.length === 3 ? "1" : "2"}
+        flex flex-col justify-start items-center ${locations.length === 3 ? "gap-1" : "gap-3"} 
       `}>
+        <Location
+          searchKey={searchKey}
+          locations={locations}
+          setLocations={setLocations}
+        />
         <AnalogClock
           now={now}
           isNow={isNow}
@@ -84,12 +90,6 @@ const ClockCard = ({
           timezone={timezone}
           utcOffset={utcOffset}
           locations={locations}
-        />
-        <Location
-          utcOffset={utcOffset}
-          searchKey={searchKey}
-          locations={locations}
-          setLocations={setLocations}
         />
       </section>
       ) : (
