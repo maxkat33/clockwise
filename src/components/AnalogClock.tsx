@@ -35,7 +35,7 @@ const AnalogClock = ( {now, isNow, refTimestamp, timezone, locations}: Props) =>
   return (
     <div className={`
       self-center ${clockSize} 
-      ${locations.length === 4 ? "mt-4" : ""} 
+      ${locations.length === 4 ? "mb-4" : ""} 
       bg-slate-100 shadow-lg shadow-slate-400
       rounded-[50%] 
     `}>
