@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { formatUtcTimestampToDate, formatTimezoneString } from "../utils.ts"
+import { formatUtcTimestampToDate } from "../utils.ts"
 
 type Props = {
     now: number
