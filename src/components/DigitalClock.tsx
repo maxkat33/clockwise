@@ -128,7 +128,7 @@ const DigitalClock = ({
 
     // Tailwind classes
 
-    
+    //test comment
     const count = Math.min(locations.length, 8)
     const textSize = sizeMap[count] || sizeMap[8]
 
