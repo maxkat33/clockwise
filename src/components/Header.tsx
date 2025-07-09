@@ -1,10 +1,10 @@
-import { PiClockClockwiseLight } from "react-icons/pi";
+const md = "md:text-[3.1rem]"
+const lg = "lg:text-[4rem]"
 
 const Header = () => {
   return (
-    <header className="shrink-0 p-3 shadow-md shadow-slate-400">
-      <h1 className="flex items-center text-4xl font-[300]">
-        CL<PiClockClockwiseLight />CK<span className="font-[500]">WISE</span>
+    <header className={`shrink-0 px-[0.4em] py-[0.2em] font-[300] tracking-wide shadow-md shadow-slate-400 text-[2rem] ${md} ${lg}`}>
+      <h1>CLOCK<span className="font-[500]">WISE</span>
       </h1>
     </header>
   )

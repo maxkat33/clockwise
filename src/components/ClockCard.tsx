@@ -48,26 +48,19 @@ const ClockCard = ({
       setTimezone("")
     }
   }, [searchKey])
-  
-  // Tailwind classes
-
-  const sm = "sm:max-w-md"
-  const md = "md:max-w-[22rem]"
-  const lg = "lg:max-w-[24rem]"
 
   return (
     <div className={`
       clockCard
-      ${sm} ${md} ${lg}
-      w-full max-w-sm
+      w-full max-w-sm sm:max-w-md md:max-w-[22rem] ${locations.length === 1 ? "md:max-w-[60%] lg:max-w-[40%]" : locations.length === 2 ? "md:max-w-[60%] lg:max-w-[60%]" : locations.length === 3 ? "lg:max-w-[80%]" : "lg:max-w-[100%]" }
       bg-gradient-to-br from-sky-200 to-blue-400
       shadow-md shadow-blue-300 
       rounded-xl 
     `}>
       {timezone.length > 0 && typeof utcOffset === "number" ? (
         <section className={`
-          h-full ${locations.length === 3 ? "py-2.5" : "py-3" }
-          flex flex-col items-center ${locations.length === 4 ? "justify-between gap-2" : "gap-3.5" }
+          h-full ${locations.length === 3 ? "py-[0.6em]" : "py-[0.75em]"} lg:p-[0.9em]
+          flex flex-col items-center ${locations.length === 4 ? "justify-between gap-[1.3em] lg:gap-[0.9em]" : locations.length === 3 ? "gap-[0.4em] lg:gap-[1em]" : "gap-[0.875em] lg:gap-[1.5em]"}
         `}>
           <Location
           utcOffset={utcOffset}

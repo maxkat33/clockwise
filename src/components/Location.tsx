@@ -11,23 +11,22 @@ type Props = {
 }
 
 const sizeMap: Record<number, string> = {
-    1: "text-4xl",
-    2: "text-[1.3rem]",
-    3: "text-[1.15rem]",
-    4: "text-[1.2rem]"
+    1: "text-[1.6rem] md:text-[1.8rem]/9 lg:text-[2.9rem]/18",
+    2: "text-[1.4rem]/8 md:text-[1.75rem]/9 lg:text-[2.6rem]/16",
+    3: "text-[1.15rem]/6 md:text-[1.35rem]/7 lg:text-[2.4rem]/14",
+    4: "text-[1.2rem]/8 md:text-[1.55rem]/7 lg:text-[2.2rem]/10"
 } 
 
 const utcSizeMap: Record<number, string> = {
-    1: "text-3xl",
-    2: "text-[1.2rem]",
-    3: "text-[1.rem]",
-    4: "text-[1rem]"
+    1: "text-[1.5rem] md:text-[1.7rem] lg:text-[2.2rem]",
+    2: "text-[1.25rem] md:text-[1.45rem] lg:text-[2rem]",
+    3: "text-[1rem] md:text-[1.1rem] lg:text-[1.8rem]",
+    4: "text-[1rem] md:text-[1.3rem] lg:text-[1.7rem]"
 }
 
 const Location = ({ utcOffset, searchKey, locations, setLocations }: Props) => {
 
     // state
-
     const [city, setCity] = useState<string | null>(null)
     const [country, setCountry] = useState<string | null>(null)
     const [editing, setEditing] = useState(false)
@@ -36,7 +35,6 @@ const Location = ({ utcOffset, searchKey, locations, setLocations }: Props) => {
     const inputRef = useRef<HTMLInputElement>(null)
 
     // helper logic 
-
     const matches = useTypeahead(SEARCH_KEYS, query)
 
     const chooseSearchKey = (key: string) => {
@@ -53,7 +51,6 @@ const Location = ({ utcOffset, searchKey, locations, setLocations }: Props) => {
     }
 
     // useEffects
-
     // Split city and country for display
     useEffect(() => {
             const [c, cn] = searchKey.split(", ")
@@ -72,15 +69,10 @@ const Location = ({ utcOffset, searchKey, locations, setLocations }: Props) => {
     }, [query, editing])
 
     // Tailwind classes
-
     const count = Math.min(locations.length, 8)
     const textSize = sizeMap[count] || sizeMap[8]
     const utcTextSize = utcSizeMap[count] || sizeMap[8]
 
-    const sm = ""
-    const md = ""
-    const lg = ""
- 
     // Display mode
     if (!editing) {
         return (
@@ -92,7 +84,7 @@ const Location = ({ utcOffset, searchKey, locations, setLocations }: Props) => {
             `}>
                 <button
                     onClick={() => setEditing(true)}
-                    className={`font-[600] ${textSize} ${locations.length === 4 ? "whitespace-normal break-words" : "block truncate overflow-hidden text-ellipsis"} hover:cursor-pointer hover:scale-[1.05] transition-all duration-400 ease-in-out`}
+                    className={`font-[600] ${textSize} w-full px-[0.5em] block truncate overflow-hidden text-ellipsis hover:cursor-pointer hover:scale-[1.05] transition-all duration-400 ease-in-out`}
                     >
                     {city}, {country}
                 </button>

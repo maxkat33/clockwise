@@ -62,17 +62,17 @@ const Home = () => {
 
   const buttonClass = `
     flex justify-center items-center
-    px-5 py-1.5 rounded-xl
-    bg-sky-500 shadow-sm shadow-sky-600
+    px-[0.5em] py-[0.15em] md:py-[0.25em] rounded-xl
+    bg-blue-400 shadow-sm shadow-blue-600
     font-bold text-center tracking-wider
     cursor-pointer
     hover:bg-blue-500 
-    focus:ring-2 focus:outline-none focus:ring-sky-600 
+    focus:ring-2 focus:outline-none focus:ring-blue-500 
     transition-colors duration-300 ease-in-out
     disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:bg-sky-500 
   `
   const MAX = 4
-  const MIN = 2
+  const MIN = 1
   const atMax = locations.length >= MAX
   const atMin = locations.length <= MIN
 
@@ -91,28 +91,24 @@ const Home = () => {
   }
   })()
 
-  const sm = ""
-  const md = ""
-  const lg = ""
-
   return (
     <main className="
       grow flex flex-col flex-1
-      w-full max-w-screen-2xl mx-auto px-6 overflow-y-auto
+      w-full px-[1.5em] overflow-y-auto
     ">
       <div className="
         btns-container
         flex justify-between w-full 
-        pt-3.5 pb-1.5 
+        pt-[0.8em] md:pt-[1em] lg:pt-[1.2em] pb-[0.35em] md:pb-[0.5em] lg:pb-[0.7em]
         ">
         <div className="
           add-minus-btns
-          flex gap-2 
-          text-2xl 
+          flex gap-[0.6em] md:gap-[0.8em]
+          text-[1.2rem] md:text-[2rem]
         ">
           <button
             disabled={atMax}
-            className={`${buttonClass} w-[2.3em]`}
+            className={`${buttonClass} w-[2.3em] md:w-[3em]`}
             onClick={() => {
               if (atMax) return
               setLocations(prev => [...prev, getRandomCity()])
@@ -122,7 +118,7 @@ const Home = () => {
           </button>
           <button
             disabled={atMin}
-            className={`${buttonClass} w-[2.3em]`}
+            className={`${buttonClass} w-[2.3em] md:w-[3em]`}
             onClick={() => {
               if (atMin) return
               setLocations((prev => prev.slice(0, -1)))
@@ -134,17 +130,17 @@ const Home = () => {
           <div className="
             control-btns
             w-3/5 
-            flex justify-end gap-2 t
-            text-base 
+            flex justify-end gap-[1em] md:gap-[1.2em] lg:gap-[1.5em]
+            text-[0.8rem] md:text-[1.25rem] lg:text-[1.4rem]
           ">
             <button 
-              className={`${buttonClass} w-[5.5em]`}
+              className={`${buttonClass} w-[5.5em] md:w-[7em]`}
               onClick={() => setIsNow(!isNow)}
             >
               {isNow ? "PAUSE" : "NOW"}
             </button>
             <button
-              className={`${buttonClass} w-[5.5em] whitespace-nowrap`}
+              className={`${buttonClass} w-[5.5em] md:w-[7em] whitespace-nowrap`}
               onClick={() => setIs24h(!is24h)}
             >
               {is24h ? "AM / PM" : "24H"}
@@ -153,10 +149,10 @@ const Home = () => {
       </div>
       <div className="grow flex items-center">
         <div className={`
-            clockCardsContainer
-            w-full
-            grid ${gridClass} auto-rows-max justify-items-center py-2 ${locations.length === 4 ? "gap-4 md:gap-10" : locations.length === 3 ? "gap-5 md:gap-16" : "gap-5 md:gap-30"}
-            `}>
+          clockCardsContainer
+          w-full
+          grid ${gridClass} auto-rows-max justify-items-center py-[0.5em] lg:px-[8em] ${locations.length === 4 ? "gap-[1em] md:gap-[2.5em] lg:gap-[1.8em] lg:px-[20em] lg:pb-[1.4em]" : locations.length === 3 ? "gap-[1.25em] md:gap-[1.3em] lg:gap-0" : "gap-5 md:gap-8"}
+        `}>
           {locations.map((searchKey, idx)=> (
             <ClockCard 
             key={idx}
