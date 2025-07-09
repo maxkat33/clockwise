@@ -3,7 +3,5 @@
 - save preset location set ups and name them 
 - change dropdown of reftime to be highlighted
 - make it visually obvious you can change location and time manually
-remove speicifc clock
-smooth animations
-nice background blur
-tagline: anytime, anywhere
+- smooth animations
+- nice background blur
