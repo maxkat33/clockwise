@@ -9,7 +9,7 @@ const Home = () => {
   const [isNow, setIsNow] = useState<boolean>(true)
   const [refTimestamp, setRefTimestamp] = useState<number>(Date.now())
   const [is24h, setIs24h] = useState<boolean>(false)
-  const [locations, setLocations] = useState<string[]>(["cairo, egypt", "london, united kingdom"])
+  const [locations, setLocations] = useState<string[]>(["melbourne, australia", "london, united kingdom"])
   const [locationStatus, setLocationStatus] = useState<string>('')
 
   // useEffects
@@ -150,7 +150,7 @@ const Home = () => {
       <div className="grow flex items-center">
         <div className={`
           clockCardsContainer
-          w-full border-green-600
+          w-full
           grid ${gridClass} auto-rows-max justify-items-center py-[0.5em] ${locations.length === 4 ? "" : "lg:px-[2em]" } ${locations.length === 4 ? "gap-[1em] md:gap-[2.5em] lg:gap-[1.8em] lg:pb-[1.4em]" : locations.length === 3 ? "gap-[1.25em] md:gap-[1em] lg:gap-[4em]" : "gap-[1.2em] md:gap-[2em]"}
         `}>
           {locations.map((searchKey, idx)=> (

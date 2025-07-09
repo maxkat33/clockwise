@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import { IoIosClose } from "react-icons/io"
 
 import { getCityData } from "../utils"
 
@@ -52,11 +53,23 @@ const ClockCard = ({
   return (
     <div className={`
       clockCard
-      w-full max-w-sm sm:max-w-md md:max-w-[22rem] ${locations.length === 1 ? "md:max-w-[60%] lg:max-w-[40%]" : locations.length === 2 ? "md:max-w-[60%] lg:max-w-[80%]" : locations.length === 3 ? "lg:max-w-[100%]" : "lg:max-w-[100%]" }
+      relative w-full max-w-sm sm:max-w-md md:max-w-[22rem] ${locations.length === 1 ? "md:max-w-[60%] lg:max-w-[40%]" : locations.length === 2 ? "md:max-w-[60%] lg:max-w-[80%]" : locations.length === 3 ? "lg:max-w-[100%]" : "lg:max-w-[100%]" }
       bg-gradient-to-br from-sky-200 to-blue-400
       shadow-md shadow-blue-300 
       rounded-xl 
     `}>
+      <div 
+        className="
+          absolute z-100 right-[0.05em] 
+          text-[2rem] opacity-20 text-black cursor-pointer 
+          hover:scale-[1.1] hover:text-red-700 hover:opacity-100  transition-all duration-500 ease-in-out
+        "
+        onClick={()=> {
+          setLocations(prev => prev.filter(loc => loc !== searchKey))
+        }}
+        >
+        <IoIosClose />
+      </div>
       {timezone.length > 0 && typeof utcOffset === "number" ? (
         <section className={`
           h-full ${locations.length === 3 ? "py-[0.6em] md:py-[0.6em]" : "py-[0.75em]"} md:p-[1em] lg:p-[0.9em]
