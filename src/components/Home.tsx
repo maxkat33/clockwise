@@ -62,7 +62,7 @@ const Home = () => {
 
   const buttonClass = `
     flex justify-center items-center
-    px-[0.5em] py-[0.15em] md:py-[0.25em] rounded-xl
+    px-[0.3em] py-[0.15em] md:py-[0.25em] rounded-xl
     bg-blue-400 shadow-sm shadow-blue-600
     font-bold text-center tracking-wider
     cursor-pointer
@@ -99,12 +99,12 @@ const Home = () => {
       <div className="
         btns-container
         flex justify-between w-full 
-        pt-[0.8em] md:pt-[1em] lg:pt-[1.2em] pb-[0.35em] md:pb-[0.5em] lg:pb-[0.7em]
+        pt-[0.8em] md:pt-[1em] lg:pt-[1.2em]
         ">
         <div className="
           add-minus-btns
-          flex gap-[0.6em] md:gap-[0.8em]
-          text-[1.2rem] md:text-[2rem]
+          flex gap-[0.7em] md:gap-[0.8em]
+          text-[1.3rem] md:text-[2rem]
         ">
           <button
             disabled={atMax}
@@ -131,16 +131,16 @@ const Home = () => {
             control-btns
             w-3/5 
             flex justify-end gap-[1em] md:gap-[1.2em] lg:gap-[1.5em]
-            text-[0.8rem] md:text-[1.25rem] lg:text-[1.4rem]
+            text-[0.9rem] md:text-[1.25rem] lg:text-[1.4rem]
           ">
             <button 
-              className={`${buttonClass} w-[5.5em] md:w-[7em]`}
+              className={`${buttonClass} w-[5em] md:w-[7em]`}
               onClick={() => setIsNow(!isNow)}
             >
               {isNow ? "PAUSE" : "NOW"}
             </button>
             <button
-              className={`${buttonClass} w-[5.5em] md:w-[7em] whitespace-nowrap`}
+              className={`${buttonClass} w-[5em] md:w-[7em] whitespace-nowrap`}
               onClick={() => setIs24h(!is24h)}
             >
               {is24h ? "AM / PM" : "24H"}
