@@ -12,7 +12,7 @@ type Props = {
 }
 
 const sizeMap: Record<number, string> = {
-  1: "w-52 h-52 md:w-60 md:h-60 lg:w-80 lg:h-80",
+  1: "w-50 h-50 md:w-60 md:h-60 lg:w-80 lg:h-80",
   2: "w-38 h-38 md:w-50 md:h-50 lg:w-70 lg:h-70",
   3: "w-22 h-22 md:w-30 md:h-30 lg:w-60 lg:h-60",
   4: "w-24 h-24 md:w-36 md:h-36 lg:w-50 lg:h-50"

@@ -99,7 +99,7 @@ const Home = () => {
       <div className="
         btns-container
         flex justify-between w-full 
-        pt-[0.8em] md:pt-[1em] lg:pt-[1.2em]
+        pb-[0.6em] pt-[0.8em] md:pt-[1em] lg:pt-[1.2em]
         ">
         <div className="
           add-minus-btns
@@ -151,7 +151,7 @@ const Home = () => {
         <div className={`
           clockCardsContainer
           w-full
-          grid ${gridClass} auto-rows-max justify-items-center py-[0.5em] lg:px-[8em] ${locations.length === 4 ? "gap-[1em] md:gap-[2.5em] lg:gap-[1.8em] lg:px-[20em] lg:pb-[1.4em]" : locations.length === 3 ? "gap-[1.25em] md:gap-[1.3em] lg:gap-0" : "gap-5 md:gap-8"}
+          grid ${gridClass} auto-rows-max justify-items-center py-[0.5em] lg:px-[8em] ${locations.length === 4 ? "gap-[1em] md:gap-[2.5em] lg:gap-[1.8em] lg:px-[20em] lg:pb-[1.4em]" : locations.length === 3 ? "gap-[1.25em] md:gap-[1.3em] lg:gap-0" : "gap-[1.2em] md:gap-[2em]"}
         `}>
           {locations.map((searchKey, idx)=> (
             <ClockCard 
