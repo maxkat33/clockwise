@@ -62,7 +62,7 @@ const Home = () => {
 
   const buttonClass = `
     flex justify-center items-center
-    px-5 py-2 rounded-xl
+    px-5 py-1.5 rounded-xl
     bg-sky-500 shadow-sm shadow-sky-600
     font-bold text-center tracking-wider
     cursor-pointer
@@ -76,15 +76,43 @@ const Home = () => {
   const atMax = locations.length >= MAX
   const atMin = locations.length <= MIN
 
-  const gridClass = locations.length === 4 ? "grid-cols-2" : "grid-cols-1"
+  const gridClass = (() => {
+    switch (locations.length) {
+      case 1:
+        return "grid-cols-1 lg:grid-cols-1"
+      case 2:
+        return "grid-cols-1 lg:grid-cols-2"
+      case 3:
+        return "grid-cols-1 lg:grid-cols-3"
+      case 4:
+        return "grid-cols-2"
+      default:
+        return "grid-cols-1"
+  }
+  })()
+
+  const sm = ""
+  const md = ""
+  const lg = ""
 
   return (
-    <main className="grow flex flex-col flex-1 w-full justify-evenly px-6 overflow-y-auto">
-      <div className="flex justify-between w-full pt-3.5 pb-1.5 btns-container">
-        <div className="flex gap-2 text-2xl add-minus-btns">
+    <main className="
+      grow flex flex-col flex-1
+      w-full max-w-screen-2xl mx-auto px-6 overflow-y-auto
+    ">
+      <div className="
+        btns-container
+        flex justify-between w-full 
+        pt-3.5 pb-1.5 
+        ">
+        <div className="
+          add-minus-btns
+          flex gap-2 
+          text-2xl 
+        ">
           <button
             disabled={atMax}
-            className={`${buttonClass} w-14`}
+            className={`${buttonClass} w-[2.3em]`}
             onClick={() => {
               if (atMax) return
               setLocations(prev => [...prev, getRandomCity()])
@@ -94,7 +122,7 @@ const Home = () => {
           </button>
           <button
             disabled={atMin}
-            className={`${buttonClass} w-14`}
+            className={`${buttonClass} w-[2.3em]`}
             onClick={() => {
               if (atMin) return
               setLocations((prev => prev.slice(0, -1)))
@@ -103,30 +131,34 @@ const Home = () => {
             -
           </button>
           </div>
-          <div className="flex justify-end w-3/5 gap-2 text-base control-btns">
+          <div className="
+            control-btns
+            w-3/5 
+            flex justify-end gap-2 t
+            text-base 
+          ">
             <button 
-              className={`${buttonClass} w-[45%]`}
+              className={`${buttonClass} w-[5.5em]`}
               onClick={() => setIsNow(!isNow)}
             >
               {isNow ? "PAUSE" : "NOW"}
             </button>
             <button
-              className={`${buttonClass} w-[45%] whitespace-nowrap`}
+              className={`${buttonClass} w-[5.5em] whitespace-nowrap`}
               onClick={() => setIs24h(!is24h)}
             >
               {is24h ? "AM / PM" : "24H"}
             </button>
         </div>
       </div>
-      <div className={`
-          clockCardsContainer
-          grow w-full
-          grid ${gridClass} gap-5
-          auto-rows-fr
-          py-2
-        `}>
-        {locations.map((searchKey, idx)=> (
-          <ClockCard 
+      <div className="grow flex items-center">
+        <div className={`
+            clockCardsContainer
+            w-full
+            grid ${gridClass} auto-rows-max justify-items-center py-2 ${locations.length === 4 ? "gap-4 md:gap-10" : locations.length === 3 ? "gap-5 md:gap-16" : "gap-5 md:gap-30"}
+            `}>
+          {locations.map((searchKey, idx)=> (
+            <ClockCard 
             key={idx}
             now={now}
             isNow={isNow}
@@ -137,8 +169,9 @@ const Home = () => {
             locations={locations}
             setLocations={setLocations}
             searchKey={searchKey}
-          />
-        ))}
+            />
+          ))}
+        </div>
       </div>
     </main>
   )

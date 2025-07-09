@@ -12,7 +12,7 @@ type Props = {
 
 const sizeMap: Record<number, string> = {
     1: "text-4xl",
-    2: "text-[1.35rem]",
+    2: "text-[1.3rem]",
     3: "text-[1.15rem]",
     4: "text-[1.2rem]"
 } 
@@ -77,13 +77,16 @@ const Location = ({ utcOffset, searchKey, locations, setLocations }: Props) => {
     const textSize = sizeMap[count] || sizeMap[8]
     const utcTextSize = utcSizeMap[count] || sizeMap[8]
 
+    const sm = ""
+    const md = ""
+    const lg = ""
  
     // Display mode
     if (!editing) {
         return (
             <div className={`
                 relative
-                flex flex-col justify-center items-center ${locations.length === 4 ? "mb-auto" : ""}
+                flex flex-col justify-center items-center
                 w-full 
                 tracking-wide
             `}>

@@ -14,12 +14,8 @@ type Props = {
 const sizeMap: Record<number, string> = {
   1: "w-80 h-80",  // 80px by 80px
   2: "w-38 h-38",
-  3: "w-18 h-18",
-  4: "w-20 h-20",
-  5: "w-16 h-16",
-  6: "w-16 h-16",
-  7: "w-16 h-16",
-  8: "w-16 h-16",
+  3: "w-22 h-22",
+  4: "w-20 h-20"
 }
 
 const AnalogClock = ( {now, isNow, refTimestamp, timezone, locations}: Props) => {
@@ -35,7 +31,7 @@ const AnalogClock = ( {now, isNow, refTimestamp, timezone, locations}: Props) =>
   return (
     <div className={`
       self-center ${clockSize} 
-      ${locations.length === 4 ? "mb-4" : ""} 
+      ${locations.length === 4 ? "mb-6" : ""} 
       bg-slate-100 shadow-lg shadow-slate-400
       rounded-[50%] 
     `}>

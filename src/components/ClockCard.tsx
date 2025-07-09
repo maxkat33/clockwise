@@ -50,46 +50,50 @@ const ClockCard = ({
   }, [searchKey])
   
   // Tailwind classes
-  
+
+  const sm = "sm:max-w-md"
+  const md = "md:max-w-[22rem]"
+  const lg = "lg:max-w-[24rem]"
 
   return (
     <div className={`
       clockCard
-      ${locations.length === 4 ? "px-3 py-4" : "px-4 py-3"}
+      ${sm} ${md} ${lg}
+      w-full max-w-sm
       bg-gradient-to-br from-sky-200 to-blue-400
-      rounded-xl 
       shadow-md shadow-blue-300 
+      rounded-xl 
     `}>
       {timezone.length > 0 && typeof utcOffset === "number" ? (
-      <section className={`
-        h-full
-        flex flex-col items-center ${locations.length === 4 ? "justify-end" : "justify-center"}  ${locations.length === 4 ? "gap-4" : locations.length === 3 ? "gap-2" : "gap-2"}
-      `}>
-        <Location
-        utcOffset={utcOffset}
-          searchKey={searchKey}
-          locations={locations}
-          setLocations={setLocations}
-        />
-        <AnalogClock
-          now={now}
-          isNow={isNow}
-          refTimestamp={refTimestamp}
-          timezone={timezone}
-          locations={locations}
-        />
-        <DigitalClock 
-          now={now}
-          isNow={isNow}
-          setIsNow={setIsNow}
-          is24h={is24h}
-          refTimestamp={refTimestamp}
-          setRefTimestamp={setRefTimestamp}
-          timezone={timezone}
+        <section className={`
+          h-full ${locations.length === 3 ? "py-2.5" : "py-3" }
+          flex flex-col items-center ${locations.length === 4 ? "justify-between gap-2" : "gap-3.5" }
+        `}>
+          <Location
           utcOffset={utcOffset}
-          locations={locations}
-        />
-      </section>
+            searchKey={searchKey}
+            locations={locations}
+            setLocations={setLocations}
+          />
+          <AnalogClock
+            now={now}
+            isNow={isNow}
+            refTimestamp={refTimestamp}
+            timezone={timezone}
+            locations={locations}
+          />
+          <DigitalClock 
+            now={now}
+            isNow={isNow}
+            setIsNow={setIsNow}
+            is24h={is24h}
+            refTimestamp={refTimestamp}
+            setRefTimestamp={setRefTimestamp}
+            timezone={timezone}
+            utcOffset={utcOffset}
+            locations={locations}
+          />
+        </section>
       ) : (
         <p>Loading timezone info...</p>
       )}
