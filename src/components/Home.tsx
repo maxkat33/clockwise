@@ -85,7 +85,7 @@ const Home = () => {
       case 3:
         return "grid-cols-1 lg:grid-cols-3"
       case 4:
-        return "grid-cols-2"
+        return "grid-cols-2 lg:grid-cols-4"
       default:
         return "grid-cols-1"
   }
@@ -150,8 +150,8 @@ const Home = () => {
       <div className="grow flex items-center">
         <div className={`
           clockCardsContainer
-          w-full
-          grid ${gridClass} auto-rows-max justify-items-center py-[0.5em] lg:px-[8em] ${locations.length === 4 ? "gap-[1em] md:gap-[2.5em] lg:gap-[1.8em] lg:px-[20em] lg:pb-[1.4em]" : locations.length === 3 ? "gap-[1.25em] md:gap-[1.3em] lg:gap-0" : "gap-[1.2em] md:gap-[2em]"}
+          w-full border-green-600
+          grid ${gridClass} auto-rows-max justify-items-center py-[0.5em] ${locations.length === 4 ? "" : "lg:px-[2em]" } ${locations.length === 4 ? "gap-[1em] md:gap-[2.5em] lg:gap-[1.8em] lg:pb-[1.4em]" : locations.length === 3 ? "gap-[1.25em] md:gap-[1em] lg:gap-[4em]" : "gap-[1.2em] md:gap-[2em]"}
         `}>
           {locations.map((searchKey, idx)=> (
             <ClockCard 

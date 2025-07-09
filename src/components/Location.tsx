@@ -11,17 +11,17 @@ type Props = {
 }
 
 const sizeMap: Record<number, string> = {
-    1: "text-[1.6rem] md:text-[1.8rem]/9 lg:text-[2.9rem]/18",
-    2: "text-[1.4rem]/8 md:text-[1.75rem]/9 lg:text-[2.6rem]/16",
-    3: "text-[1.15rem]/6 md:text-[1.35rem]/7 lg:text-[2.4rem]/14",
-    4: "text-[1.2rem]/8 md:text-[1.55rem]/7 lg:text-[2.2rem]/10"
+    1: "text-[1.6rem] md:text-[2.4rem]/12 lg:text-[2.9rem]/18",
+    2: "text-[1.4rem]/8 md:text-[1.75rem]/9 lg:text-[2.7rem]/16",
+    3: "text-[1.15rem]/6 md:text-[1.45rem]/7 lg:text-[2.2rem]/14",
+    4: "text-[1.2rem]/8 md:text-[1.55rem]/9 lg:text-[1.9rem]/12"
 } 
 
 const utcSizeMap: Record<number, string> = {
-    1: "text-[1.5rem] md:text-[1.7rem] lg:text-[2.2rem]",
+    1: "text-[1.5rem] md:text-[1.9rem] lg:text-[2.2rem]",
     2: "text-[1.25rem] md:text-[1.45rem] lg:text-[2rem]",
-    3: "text-[1rem] md:text-[1.1rem] lg:text-[1.8rem]",
-    4: "text-[1rem] md:text-[1.3rem] lg:text-[1.7rem]"
+    3: "text-[1rem] md:text-[1.15rem] lg:text-[1.8rem]",
+    4: "text-[1rem] md:text-[1.3rem] lg:text-[1.6rem]"
 }
 
 const Location = ({ utcOffset, searchKey, locations, setLocations }: Props) => {
@@ -84,7 +84,7 @@ const Location = ({ utcOffset, searchKey, locations, setLocations }: Props) => {
             `}>
                 <button
                     onClick={() => setEditing(true)}
-                    className={`font-[600] ${textSize} w-full px-[0.5em] block truncate overflow-hidden text-ellipsis hover:cursor-pointer hover:scale-[1.05] transition-all duration-400 ease-in-out`}
+                    className={`font-[600] ${textSize} w-full px-[0.8em] block truncate overflow-hidden text-ellipsis hover:cursor-pointer hover:scale-[1.05] transition-all duration-400 ease-in-out`}
                     >
                     {city}, {country}
                 </button>

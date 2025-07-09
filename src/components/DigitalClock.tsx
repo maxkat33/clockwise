@@ -14,10 +14,10 @@ type Props = {
 }
 
 const sizeMap: Record<number, string> = {
-    1: "text-[1.55rem] md:text-[1.8rem] lg:text-[2.6rem]",
-    2: "text-[1.4rem] md:text-[1.65rem] lg:text-[2.2rem]",
-    3: "text-[1.15rem] md:text-[1.25rem] lg:text-[2rem]",
-    4: "text-[1.12rem] md:text-[1.5rem] lg:text-[1.9rem]"
+    1: "text-[1.55rem] md:text-[2rem] lg:text-[2.3rem] w-[10em] lg:w-[8em]",
+    2: "text-[1.4rem] md:text-[1.65rem] lg:text-[2.1rem] w-[8em] lg:w-[9em]",
+    3: "text-[1rem] md:text-[1.25rem] lg:text-[2rem] w-[8em]",
+    4: "text-[1.12rem] md:text-[1.5rem] lg:text-[1.75rem] w-[90%] md:w-[60%] lg:w-[50%]"
 }  
 
 const DigitalClock = ({
@@ -131,7 +131,6 @@ const DigitalClock = ({
     <div 
         className={`
             flex items-center justify-center gap-2
-            ${locations.length === 4 ? "w-[90%] md:w-[60%] lg:w-[40%]" : locations.length === 3 ? "w-[9em]" : locations.length === 2 ? "w-[10em] lg:w-[9em]" : "w-[10em] lg:w-[8em]"}
             ${textSize} tracking-wider
             bg-white/20 backdrop-blur-sm rounded-lg
             shadow-inner shadow-blue-100

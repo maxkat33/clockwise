@@ -52,15 +52,15 @@ const ClockCard = ({
   return (
     <div className={`
       clockCard
-      w-full max-w-sm sm:max-w-md md:max-w-[22rem] ${locations.length === 1 ? "md:max-w-[60%] lg:max-w-[40%]" : locations.length === 2 ? "md:max-w-[60%] lg:max-w-[60%]" : locations.length === 3 ? "lg:max-w-[80%]" : "lg:max-w-[100%]" }
+      w-full max-w-sm sm:max-w-md md:max-w-[22rem] ${locations.length === 1 ? "md:max-w-[60%] lg:max-w-[40%]" : locations.length === 2 ? "md:max-w-[60%] lg:max-w-[80%]" : locations.length === 3 ? "lg:max-w-[100%]" : "lg:max-w-[100%]" }
       bg-gradient-to-br from-sky-200 to-blue-400
       shadow-md shadow-blue-300 
       rounded-xl 
     `}>
       {timezone.length > 0 && typeof utcOffset === "number" ? (
         <section className={`
-          h-full ${locations.length === 3 ? "py-[0.6em]" : "py-[0.75em]"} lg:p-[0.9em]
-          flex flex-col items-center ${locations.length === 4 ? "justify-between gap-[1.3em] lg:gap-[0.9em]" : locations.length === 3 ? "gap-[0.4em] lg:gap-[1em]" : "gap-[0.875em] lg:gap-[1.5em]"}
+          h-full ${locations.length === 3 ? "py-[0.6em] md:py-[0.6em]" : "py-[0.75em]"} md:p-[1em] lg:p-[0.9em]
+          flex flex-col items-center ${locations.length === 4 ? "justify-between gap-[1.3em] lg:gap-[1.4em]" : locations.length === 3 ? "gap-[0.4em] md:gap-[0.6em] lg:gap-[1em]" : "gap-[0.875em] lg:gap-[1.3em]"}
         `}>
           <Location
           utcOffset={utcOffset}
