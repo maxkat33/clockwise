@@ -9,7 +9,7 @@ const Home = () => {
   const [isNow, setIsNow] = useState<boolean>(true)
   const [refTimestamp, setRefTimestamp] = useState<number>(Date.now())
   const [is24h, setIs24h] = useState<boolean>(false)
-  const [locations, setLocations] = useState<string[]>(["melbourne, australia", "london, united kingdom"])
+  const [locations, setLocations] = useState<string[]>(["cairo, egypt", "london, united kingdom"])
   const [locationStatus, setLocationStatus] = useState<string>('')
 
   // useEffects
@@ -62,7 +62,7 @@ const Home = () => {
 
   const buttonClass = `
     flex justify-center items-center
-    px-[0.3em] py-[0.15em] md:py-[0.25em] rounded-xl
+    px-[0.3em] pb-[0.2em] py-[0.15em] md:py-[0.25em] rounded-xl
     bg-blue-400 shadow-sm shadow-blue-600
     font-bold text-center tracking-wider
     cursor-pointer
