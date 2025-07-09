@@ -17,7 +17,7 @@ const sizeMap: Record<number, string> = {
     1: "text-[1.55rem] md:text-[2rem] lg:text-[2.3rem] w-[10em] lg:w-[8em]",
     2: "text-[1.4rem] md:text-[1.65rem] lg:text-[2.1rem] w-[8em] lg:w-[9em]",
     3: "text-[1rem] md:text-[1.25rem] lg:text-[2rem] w-[8em]",
-    4: "text-[1.12rem] md:text-[1.5rem] lg:text-[1.75rem] w-[90%] md:w-[60%] lg:w-[50%]"
+    4: "text-[1.12rem] md:text-[1.5rem] lg:text-[1.75rem] w-[90%] md:w-[60%] lg:w-[60%]"
 }  
 
 const DigitalClock = ({

@@ -151,7 +151,7 @@ const Home = () => {
         <div className={`
           clockCardsContainer
           w-full
-          grid ${gridClass} auto-rows-max justify-items-center py-[0.5em] ${locations.length === 4 ? "" : "lg:px-[2em]" } ${locations.length === 4 ? "gap-[1em] md:gap-[2.5em] lg:gap-[1.8em] lg:pb-[1.4em]" : locations.length === 3 ? "gap-[1.25em] md:gap-[1em] lg:gap-[4em]" : "gap-[1.2em] md:gap-[2em]"}
+          grid ${gridClass} auto-rows-max justify-items-center py-[0.5em] ${locations.length === 4 ? "" : "lg:px-[2em]" } ${locations.length === 4 ? "gap-[1em] md:gap-[2em] lg:gap-[1.8em] lg:pb-[1.4em]" : locations.length === 3 ? "gap-[1.25em] md:gap-[1em] lg:gap-[4em]" : "gap-[1.2em] md:gap-[2em]"}
         `}>
           {locations.map((searchKey, idx)=> (
             <ClockCard 

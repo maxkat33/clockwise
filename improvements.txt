@@ -6,3 +6,4 @@
 remove speicifc clock
 smooth animations
 nice background blur
+tagline: anytime, anywhere

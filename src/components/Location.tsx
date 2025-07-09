@@ -11,14 +11,14 @@ type Props = {
 }
 
 const sizeMap: Record<number, string> = {
-    1: "text-[1.6rem] md:text-[2.4rem]/12 lg:text-[2.9rem]/18",
+    1: "text-[1.5rem] md:text-[2.2rem]/12 lg:text-[2.9rem]/18",
     2: "text-[1.4rem]/8 md:text-[1.75rem]/9 lg:text-[2.7rem]/16",
     3: "text-[1.15rem]/6 md:text-[1.45rem]/7 lg:text-[2.2rem]/14",
     4: "text-[1.2rem]/8 md:text-[1.55rem]/9 lg:text-[1.9rem]/12"
 } 
 
 const utcSizeMap: Record<number, string> = {
-    1: "text-[1.5rem] md:text-[1.9rem] lg:text-[2.2rem]",
+    1: "text-[1.4rem] md:text-[1.9rem] lg:text-[2.2rem]",
     2: "text-[1.25rem] md:text-[1.45rem] lg:text-[2rem]",
     3: "text-[1rem] md:text-[1.15rem] lg:text-[1.8rem]",
     4: "text-[1rem] md:text-[1.3rem] lg:text-[1.6rem]"
@@ -77,14 +77,13 @@ const Location = ({ utcOffset, searchKey, locations, setLocations }: Props) => {
     if (!editing) {
         return (
             <div className={`
-                relative
+                relative ${locations.length === 2 || locations.length === 1 ? "w-[98%] lg:w-[95%]" : "w-full" }
                 flex flex-col justify-center items-center
-                w-full 
                 tracking-wide
             `}>
                 <button
                     onClick={() => setEditing(true)}
-                    className={`font-[600] ${textSize} w-full px-[0.8em] block truncate overflow-hidden text-ellipsis hover:cursor-pointer hover:scale-[1.05] transition-all duration-400 ease-in-out`}
+                    className={`font-[600] ${textSize} w-full px-[0.8em] rounded-xl block truncate overflow-hidden text-ellipsis hover:cursor-pointer hover:scale-[1.05] hover:bg-white/20 transition-all duration-400 ease-in-out`}
                     >
                     {city}, {country}
                 </button>
@@ -154,17 +153,6 @@ const Location = ({ utcOffset, searchKey, locations, setLocations }: Props) => {
         </div>
     )
 
-    return (
-        <div
-            className={`
-            relative w-full
-            flex flex-col items-center justify-center
-            h-[5.6em] md:h-[6.4em] lg:h-[6.6em]
-            `}
-        >sdsd
-            { editing ? (<></>) : (<></>) }
-        </div>
-    )
 }
 
 export default Location
