@@ -150,8 +150,9 @@ const Home = () => {
       <div className="grow flex items-center">
         <div className={`
           clockCardsContainer
-          w-full
-          grid ${gridClass} auto-rows-max justify-items-center py-[0.5em] ${locations.length === 4 ? "" : "lg:px-[2em]" } ${locations.length === 4 ? "gap-[1em] md:gap-[2em] lg:gap-[1.8em] lg:pb-[1.4em]" : locations.length === 3 ? "gap-[1.25em] md:gap-[1em] lg:gap-[4em]" : "gap-[1.2em] md:gap-[2em]"}
+          w-full py-[0.5em]
+          grid ${gridClass} auto-rows-max justify-items-center 
+          ${locations.length === 4 ? "gap-[1em] md:gap-[2em] lg:gap-[0.5em] lg:pb-[1.4em]" : locations.length === 3 ? "gap-[1.25em] md:gap-[1em] lg:gap-[1.8em] xl:gap-[2em]" : "gap-[1.2em] md:gap-[2em]"}
         `}>
           {locations.map((searchKey, idx)=> (
             <ClockCard 

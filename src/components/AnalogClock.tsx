@@ -12,10 +12,10 @@ type Props = {
 }
 
 const sizeMap: Record<number, string> = {
-  1: "w-50 h-50 md:w-66 md:h-66 lg:w-72 lg:h-72",
-  2: "w-34 h-34 md:w-50 md:h-50 lg:w-70 lg:h-70",
-  3: "w-22 h-22 md:w-30 md:h-30 lg:w-60 lg:h-60",
-  4: "w-24 h-24 md:w-36 md:h-36 lg:w-50 lg:h-50"
+  1: "w-50 h-50 md:w-66 md:h-66 lg:w-70 lg:h-70 xl:w-72 xl:h-72",
+  2: "w-34 h-34 md:w-48 md:h-48 lg:w-62 lg:h-62 xl:w-70 xl:h-70",
+  3: "w-22 h-22 md:w-30 md:h-30 lg:w-46 lg:h-46 xl:w-60 xl:h-60",
+  4: "w-24 h-24 md:w-36 md:h-36 lg:w-38 lg:h-38 xl:w-50 xl:h-50"
 }
 
 const AnalogClock = ( {now, isNow, refTimestamp, timezone, locations}: Props) => {

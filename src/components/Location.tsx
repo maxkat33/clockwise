@@ -11,17 +11,17 @@ type Props = {
 }
 
 const sizeMap: Record<number, string> = {
-    1: "text-[1.5rem] md:text-[2.2rem]/12 lg:text-[2.9rem]/18",
-    2: "text-[1.4rem]/8 md:text-[1.75rem]/9 lg:text-[2.7rem]/16",
-    3: "text-[1.15rem]/6 md:text-[1.45rem]/7 lg:text-[2.2rem]/14",
-    4: "text-[1.2rem]/8 md:text-[1.55rem]/9 lg:text-[1.9rem]/12"
+    1: "text-[1.5rem] md:text-[2.2rem]/12 xl:text-[2.9rem]/18",
+    2: "text-[1.4rem]/8 md:text-[1.75rem]/9 lg:text-[2.2rem]/12 xl:text-[2.7rem]/16",
+    3: "text-[1.15rem]/6 md:text-[1.45rem]/7 lg:text-[1.7rem]/10 xl:text-[2.2rem]/14",
+    4: "text-[1rem]/7 md:text-[1.55rem]/9 lg:text-[1.6rem]/10 xl:text-[1.9rem]/12"
 } 
 
 const utcSizeMap: Record<number, string> = {
-    1: "text-[1.4rem] md:text-[1.9rem] lg:text-[2.2rem]",
-    2: "text-[1.25rem] md:text-[1.45rem] lg:text-[2rem]",
-    3: "text-[1rem] md:text-[1.15rem] lg:text-[1.8rem]",
-    4: "text-[1rem] md:text-[1.3rem] lg:text-[1.6rem]"
+    1: "text-[1.4rem] md:text-[1.9rem] lg:text-[2rem] xl:text-[2.2rem]",
+    2: "text-[1.25rem] md:text-[1.45rem] lg:text-[1.9rem] xl:text-[2rem]",
+    3: "text-[1rem] md:text-[1.15rem] lg:text-[1.65rem] xl:text-[1.8rem]",
+    4: "text-[0.85rem] md:text-[1.3rem] lg:text-[1.4rem] xl:text-[1.6rem]"
 }
 
 const Location = ({ utcOffset, searchKey, locations, setLocations }: Props) => {
@@ -77,7 +77,7 @@ const Location = ({ utcOffset, searchKey, locations, setLocations }: Props) => {
     if (!editing) {
         return (
             <div className={`
-                relative ${locations.length === 2 || locations.length === 1 ? "w-[98%] lg:w-[95%]" : "w-full" }
+                relative w-full
                 flex flex-col justify-center items-center
                 tracking-wide
             `}>
