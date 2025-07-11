@@ -72,85 +72,89 @@ const Location = ({ idx, utcOffset, searchKey, locations, setLocations }: Props)
     const utcTextSize = utcSizeMap[count] || sizeMap[8]
 
     // Display mode
-    if (!editing) {
-        return (
-            <div className={`
+    return (
+        <div
+            className={`
                 relative w-full
                 flex flex-col justify-center items-center
                 tracking-wide
-            `}>
+            `}
+        >
+            {!editing ? (
                 <button
                     onClick={() => setEditing(true)}
-                    className={`font-[600] ${textSize} w-full px-[0.8em] rounded-xl block truncate overflow-hidden text-ellipsis hover:cursor-pointer hover:scale-[1.05] hover:bg-white/20 transition-all duration-400 ease-in-out`}
-                    >
+                    className={`
+                        w-full px-[0.8em] py-[0.4em] 
+                        font-[600] ${textSize} 
+                        rounded-xl block truncate overflow-hidden text-ellipsis 
+                        hover:cursor-pointer hover:scale-[1.05] hover:bg-white/20 transition-all duration-400 ease-in-out
+                `}>
                     {city}, {country}
                 </button>
-                <span className={`font-[500] ${utcTextSize}`}>
-                    {utcOffset !== null ? formatTimezoneString(utcOffset) : "..."}
-                </span>
-            </div>
-        )
-    }
-
-    // Edit mode (search input + dropdown)
-    return (
-        <div className="relative w-full bg-slate-200">
-            <input
-                ref={inputRef}
-                value={query}
-                onChange={(e) => setQuery(e.target.value)}
-                onKeyDown={(e) => {
-                    if (e.key === "Escape" || e.key === "Enter" && matches.length === 0) {
-                        setEditing(false)
-                        setQuery("")
-                    }
-                    if (e.key === "ArrowDown") {
-                        e.preventDefault()
-                        setHighlightedIndex((prev) =>
-                        prev < matches.length - 1 ? prev + 1 : 0
+            ) : (
+                <input
+                    ref={inputRef}
+                    value={query}
+                    onChange={(e) => setQuery(e.target.value)}
+                    onKeyDown={(e) => {
+                        if (e.key === "Escape" || (e.key === "Enter" && matches.length === 0)) {
+                            setEditing(false)
+                            setQuery("")
+                        }
+                        if (e.key === "ArrowDown") {
+                            e.preventDefault()
+                            setHighlightedIndex((prev) =>
+                                prev < matches.length - 1 ? prev + 1 : 0
+                            )
+                        }
+                        if (e.key === "ArrowUp") {
+                            e.preventDefault()
+                            setHighlightedIndex((prev) =>
+                                prev > 0 ? prev - 1 : matches.length - 1
+                            )
+                        }
+                        if (e.key === "Enter" && matches.length > 0) {
+                            e.preventDefault()
+                            chooseSearchKey(matches[highlightedIndex])
+                        }
+                    }}
+                    onBlur={() => {
+                        setTimeout(() => {
+                            setEditing(false)
+                            setQuery("")
+                        }, 100)
+                    }}
+                    placeholder="Search for a city..."
+                    className={`
+                        w-full px-[0.8em] py-[0.4em] 
+                        font-[600] ${textSize} text-center
+                        bg-white rounded-xl truncate border border-gray-400
+                    `}
+                />
+            )}
+            <span className={`font-[500] ${utcTextSize} mt-1`}>
+                {utcOffset !== null ? formatTimezoneString(utcOffset) : "..."}
+            </span>
+            {editing && matches.length > 0 && (
+                <ul className="absolute top-full left-0 z-10 w-full mt-1 overflow-y-auto bg-white border rounded-lg shadow-lg max-h-60">
+                    {matches.map((key, idx) => {
+                        const [c, cn] = key.split(", ")
+                        const isActive = idx === highlightedIndex
+                        return (
+                            <li
+                                key={key}
+                                className={`cursor-pointer px-3 py-2 ${isActive ? "bg-pink-200" : "hover:bg-purple-100"}`}
+                                onMouseEnter={() => setHighlightedIndex(idx)}
+                                onClick={() => chooseSearchKey(key)}
+                            >
+                                {capitaliseString(c)}, {capitaliseString(cn)}
+                            </li>
                         )
-                    }
-                    if (e.key === "ArrowUp") {
-                        e.preventDefault()
-                        setHighlightedIndex((prev) =>
-                            prev > 0 ? prev - 1 : matches.length - 1
-                        )
-                    }
-                    if (e.key === "Enter" && matches.length > 0) {
-                        e.preventDefault()
-                        chooseSearchKey(matches[highlightedIndex])
-                    }
-                }}
-                onBlur={() => {
-                    setTimeout(() => {
-                        setEditing(false)
-                        setQuery("")
-                    }, 100)
-                }}
-                placeholder="Search for a city..."
-                className="w-full p-2 border rounded-lg"
-            />
-            {matches.length > 0 && (
-            <ul className="absolute z-10 w-full mt-1 overflow-y-auto bg-white border rounded-lg shadow-lg max-h-60">
-                {matches.map((key, idx) => {
-                    const [c, cn] = key.split(", ")
-                    const isActive = idx === highlightedIndex
-                    return (
-                        <li
-                            key={key}
-                            className={`cursor-pointer px-3 py-2 ${isActive ? "bg-pink-200" : "hover:bg-purple-100"}`}
-                            onMouseEnter={() => setHighlightedIndex(idx)}
-                            onClick={() => chooseSearchKey(key)}
-                        >
-                            {capitaliseString(c)}, {capitaliseString(cn)}
-                        </li>
-                    )
-                })}
-            </ul>
+                    })}
+                </ul>
             )}
         </div>
     )
-
 }
 
 export default Location

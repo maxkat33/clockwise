@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 import { IoIosClose } from "react-icons/io"
-import { IoHomeOutline } from "react-icons/io5"
+import { IoHomeSharp } from "react-icons/io5"
 import { FaSpinner } from "react-icons/fa"
 
 
@@ -74,8 +74,8 @@ const ClockCard = ({
       <div 
         className={`
           closeIcon
-          absolute z-100 right-[0.05em] 
-          text-[2rem] md:text-[2em] opacity-20 text-black ${locations.length === 1 ? "cursor-not-allowed": "cursor-pointer"}  
+          absolute z-100 right-[0.05em] top-[-0.05em]
+          text-[2em] md:text-[2em] opacity-20 text-black ${locations.length === 1 ? "cursor-not-allowed": "cursor-pointer"}  
           hover:scale-[1.1] hover:text-red-700 hover:opacity-100 transition-all duration-500 ease-in-out
         `}
         onClick={()=> {
@@ -92,9 +92,9 @@ const ClockCard = ({
         <div 
         className={`
           homeIcon
-          absolute z-100 p-[0.3em]
-          text-[1em] md:text-[1.2em] text-black cursor-pointer 
-          ${isUserLocation ? "opacity-100" : "opacity-20"}
+          absolute z-100 top-[0.4em] left-[0.45em]
+          text-[0.9rem] md:text-[1.2rem] cursor-pointer 
+          ${isUserLocation ? "opacity-90" : "opacity-20"}
           hover:scale-[1.1] hover:text-blue-900 hover:opacity-100 transition-all duration-500 ease-in-out
         `}
         onClick={() => {
@@ -125,7 +125,7 @@ const ClockCard = ({
           {loadingLocation ? (
             <FaSpinner className="animate-spin text-blue-900 h-5 w-5" />
           ) : (
-            <IoHomeOutline />
+            <IoHomeSharp />
           )}
         </div> 
       )}
