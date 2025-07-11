@@ -22,6 +22,7 @@ type Props = {
   setLocations: React.Dispatch<React.SetStateAction<string[]>>
   locationGranted: boolean
   searchKey: string
+  userCity: string | null
 }
 
 const ClockCard = ({
@@ -35,7 +36,8 @@ const ClockCard = ({
   locations,
   setLocations,
   locationGranted,
-  searchKey
+  searchKey,
+  userCity
 }: Props) => {
 
   console.log(`clockCard rendered for ${searchKey} - location granted === ${locationGranted}`)
@@ -59,6 +61,8 @@ const ClockCard = ({
       setTimezone("")
     }
   }, [searchKey])
+
+  const isUserLocation = userCity === searchKey
 
   return (
     <div className={`
@@ -89,7 +93,8 @@ const ClockCard = ({
         className={`
           homeIcon
           absolute z-100 p-[0.3em]
-          text-[1em] md:text-[1.2em] opacity-20 text-black cursor-pointer 
+          text-[1em] md:text-[1.2em] text-black cursor-pointer 
+          ${isUserLocation ? "opacity-100" : "opacity-20"}
           hover:scale-[1.1] hover:text-blue-900 hover:opacity-100 transition-all duration-500 ease-in-out
         `}
         onClick={() => {

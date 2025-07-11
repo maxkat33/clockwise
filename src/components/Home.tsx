@@ -11,6 +11,7 @@ const Home = () => {
   const [is24h, setIs24h] = useState<boolean>(false)
   const [locations, setLocations] = useState<string[]>(["melbourne, australia", "london, united kingdom"])
   const [locationGranted, setLocationGranted] = useState<boolean>(false)
+  const [userCity, setUserCity] = useState<string | null>(null)
 
   // useEffects
 
@@ -34,6 +35,7 @@ const Home = () => {
   
         const userCityData = getClosestCityData(position.coords.latitude, position.coords.longitude)
         const userCity = userCityData.searchKey
+        setUserCity(userCity)
   
         setLocations((prevLocations) => {
           const newLocations = [...prevLocations]
@@ -163,6 +165,7 @@ const Home = () => {
               setLocations={setLocations}
               locationGranted={locationGranted}
               searchKey={searchKey}
+              userCity={userCity}
             />
           ))}
         </div>
