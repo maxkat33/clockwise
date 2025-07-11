@@ -6,3 +6,4 @@
 - smooth animations
 - nice background blur
 - add more famous cities in usa uk aus etc
+- home button that sets the location data to user data

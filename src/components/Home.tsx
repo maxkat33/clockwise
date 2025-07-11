@@ -10,7 +10,7 @@ const Home = () => {
   const [refTimestamp, setRefTimestamp] = useState<number>(Date.now())
   const [is24h, setIs24h] = useState<boolean>(false)
   const [locations, setLocations] = useState<string[]>(["melbourne, australia", "london, united kingdom"])
-  const [locationStatus, setLocationStatus] = useState<string>('')
+  const [locationGranted, setLocationGranted] = useState<boolean>(false)
 
   // useEffects
 
@@ -28,35 +28,30 @@ const Home = () => {
 
   // Ask user for location permissions and if access is granted, update first clock to be in the user's city
   useEffect(() => {
-    navigator.permissions.query({ name: 'geolocation' })
-    .then((result) => {
-      setLocationStatus(result.state)
-      
-      // Listen for changes
-      result.onchange = () => {
-        setLocationStatus(result.state)
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        setLocationGranted(true)
+  
+        const userCityData = getClosestCityData(position.coords.latitude, position.coords.longitude)
+        const userCity = userCityData.searchKey
+  
+        setLocations((prevLocations) => {
+          const newLocations = [...prevLocations]
+          newLocations[0] = userCity       
+          return newLocations 
+        })
+      },
+      (error) => {
+        setLocationGranted(false)
+        console.error(`Geolocation error ${error.code}: ${error.message}`)
+      },
+      {
+        enableHighAccuracy: false,
+        timeout: 5000,
+        maximumAge: 60000,
       }
-    })
+    )
   }, [])
-
-  useEffect(() => {
-    if (locationStatus === 'granted' || locationStatus === 'prompt') {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const userCityData = getClosestCityData(position.coords.latitude, position.coords.longitude)
-          const userCity = userCityData.searchKey
-          setLocations((prevLocations) => {
-            const newLocations = [...prevLocations]
-            newLocations[0] = userCity       
-            return newLocations 
-          })
-        },
-        (error) => {
-          console.error(`Geolocation error ${error.code}: ${error.message}`)
-        }
-      )
-    }
-  }, [locationStatus])
 
   // Tailwind classes
 
@@ -94,7 +89,7 @@ const Home = () => {
   return (
     <main className="
       grow flex flex-col flex-1
-      w-full px-[1.5em] overflow-y-auto
+      w-full px-[1.5em] lg:px-[2em] lg:py-[0.5em] overflow-y-auto
     ">
       <div className="
         btns-container
@@ -103,7 +98,7 @@ const Home = () => {
         ">
         <div className="
           add-minus-btns
-          flex gap-[0.7em] md:gap-[0.8em]
+          flex gap-[0.7em] md:gap-[0.8em] xl:gap-[1.2em]
           text-[1.3rem] md:text-[2rem]
         ">
           <button
@@ -130,7 +125,7 @@ const Home = () => {
           <div className="
             control-btns
             w-3/5 
-            flex justify-end gap-[1em] md:gap-[1.2em] lg:gap-[1.5em]
+            flex justify-end gap-[1em] md:gap-[1.2em] lg:gap-[1.5em] xl:gap-[2em]
             text-[0.9rem] md:text-[1.25rem] lg:text-[1.4rem]
           ">
             <button 
@@ -155,17 +150,19 @@ const Home = () => {
           ${locations.length === 4 ? "gap-[1em] md:gap-[2em] lg:gap-[0.5em] lg:pb-[1.4em]" : locations.length === 3 ? "gap-[1.25em] md:gap-[1em] lg:gap-[1.8em] xl:gap-[2em]" : "gap-[1.2em] md:gap-[2em]"}
         `}>
           {locations.map((searchKey, idx)=> (
-            <ClockCard 
-            key={idx}
-            now={now}
-            isNow={isNow}
-            setIsNow={setIsNow}
-            is24h={is24h}
-            refTimestamp={refTimestamp}
-            setRefTimestamp={setRefTimestamp}
-            locations={locations}
-            setLocations={setLocations}
-            searchKey={searchKey}
+            <ClockCard
+              key={idx}
+              idx={idx}
+              now={now}
+              isNow={isNow}
+              setIsNow={setIsNow}
+              is24h={is24h}
+              refTimestamp={refTimestamp}
+              setRefTimestamp={setRefTimestamp}
+              locations={locations}
+              setLocations={setLocations}
+              locationGranted={locationGranted}
+              searchKey={searchKey}
             />
           ))}
         </div>

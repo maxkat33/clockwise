@@ -4,10 +4,11 @@ import { SEARCH_KEYS } from "../data/citiesSearchKeys"
 import { useTypeahead } from "../hooks/useTypeahead"
 
 type Props = {
-  searchKey: string
-  locations: string[]
-  setLocations: React.Dispatch<React.SetStateAction<string[]>>
-  utcOffset: number | null
+    idx: number 
+    searchKey: string
+    locations: string[]
+    setLocations: React.Dispatch<React.SetStateAction<string[]>>
+    utcOffset: number | null
 }
 
 const sizeMap: Record<number, string> = {
@@ -24,7 +25,7 @@ const utcSizeMap: Record<number, string> = {
     4: "text-[0.85rem] md:text-[1.3rem] lg:text-[1.4rem] xl:text-[1.6rem]"
 }
 
-const Location = ({ utcOffset, searchKey, locations, setLocations }: Props) => {
+const Location = ({ idx, utcOffset, searchKey, locations, setLocations }: Props) => {
 
     // state
     const [city, setCity] = useState<string | null>(null)
@@ -40,10 +41,7 @@ const Location = ({ utcOffset, searchKey, locations, setLocations }: Props) => {
     const chooseSearchKey = (key: string) => {
         setLocations((prev) => {
             const updated = [...prev]
-            const idx = prev.indexOf(searchKey)
-            if (idx !== -1) {
-                updated[idx] = key
-            }
+            updated[idx] = key
             return updated
         })
         setEditing(false)
