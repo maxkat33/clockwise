@@ -75,7 +75,7 @@ const Location = ({ idx, utcOffset, searchKey, locations, setLocations }: Props)
     if (!editing) {
         return (
             <div className={`
-                relative
+                relative w-full
                 flex flex-col justify-center items-center
                 tracking-wide
             `}>

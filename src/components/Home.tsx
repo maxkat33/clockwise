@@ -12,6 +12,7 @@ const Home = () => {
   const [locations, setLocations] = useState<string[]>(["melbourne, australia", "london, united kingdom"])
   const [locationGranted, setLocationGranted] = useState<boolean>(false)
   const [userCity, setUserCity] = useState<string | null>(null)
+  const [showIntroModal, setShowIntroModal] = useState(true)
 
   // useEffects
 
@@ -55,6 +56,14 @@ const Home = () => {
     )
   }, [])
 
+  // ensure how-to pop up modal only appears once per browser session
+  useEffect(() => {
+    if (!sessionStorage.getItem("introShown")) {
+      setShowIntroModal(true)
+      sessionStorage.setItem("introShown", "true")
+    }
+  }, [])
+  
   // Tailwind classes
 
   const buttonClass = `
@@ -93,6 +102,29 @@ const Home = () => {
       grow flex flex-col flex-1
       w-full px-[1.5em] lg:px-[2em] lg:py-[0.5em] overflow-y-auto
     ">
+      {showIntroModal && (
+        <div className="fixed inset-0 bg-transparent bg-opacity-80 backdrop-blur-sm flex items-center justify-center z-101">
+          <div className="flex flex-col gap-4 py-8 px-10 bg-white rounded-xl shadow-lg w-[80%] sm:w-[60%] md:w-[50%] lg:w-[30%] xl:w-[25%] text-gray-800">
+            <h2 className="text-center text-3xl font-bold mb-2">Welcome!</h2>
+            <p className="mb-4">Tap the city name to change location, and tap the time to set a custom time.</p>
+            <button
+              className={`
+                flex justify-center items-center
+                rounded-xl py-2 px-4 mx-auto
+                bg-blue-400 shadow-sm shadow-blue-600
+                font-bold text-center text-white tracking-wider
+                cursor-pointer
+                hover:bg-blue-500 
+                focus:ring-2 focus:outline-none focus:ring-blue-500 
+                transition-colors duration-300 ease-in-out
+                disabled:cursor-not-allowed disabled:opacity-70 disabled:hover:bg-sky-500 `}
+              onClick={() => setShowIntroModal(false)}
+            >
+              Got it!
+            </button>
+          </div>
+        </div>
+      )}
       <div className="
         btns-container
         flex justify-between w-full 

@@ -68,7 +68,7 @@ const ClockCard = ({
     <div className={`
       clockCard
       relative w-full max-w-sm sm:max-w-md md:max-w-[22rem] 
-      ${locations.length === 1 ? "md:max-w-[70%] lg:max-w-[60%] xl:max-w-[30%]" : locations.length === 2 ? "md:max-w-[60%] lg:max-w-[100%] xl:max-w-[60%]" : locations.length === 3 ? "lg:max-w-[100%] xl:max-w-[80%]" : "lg:max-w-[90%]" }
+      ${locations.length === 1 ? "md:max-w-[70%] lg:max-w-[60%] xl:max-w-[30%]" : locations.length === 2 ? "md:max-w-[60%] lg:max-w-[100%] xl:max-w-[60%]" : locations.length === 3 ? "lg:max-w-[100%] xl:max-w-[80%]" : "lg:max-w-[90%] py-1" }
       bg-gradient-to-br from-sky-200 to-blue-400 rounded-xl shadow-md shadow-blue-300 
     `}>
       <div 
